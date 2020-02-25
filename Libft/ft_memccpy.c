@@ -6,7 +6,7 @@ void *ft_memccpy(void *dst, const void *src, int c, size_t n)
 	{
 		*(char*)dst++ = *(char*)src;
 		if (*(char*)src++ == (unsigned char)c)
-			return dst;
+			return (dst);
 	}
-	return 0;
+	return (0);
 }
