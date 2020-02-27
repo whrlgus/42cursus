@@ -1,0 +1,50 @@
+#include "libft.h"
+
+static size_t	get_word_cnt(char const *s, char c)
+{
+	size_t cnt;
+
+	cnt = 0;
+	while (*s)
+	{
+		if (*s != c)
+		{
+			++cnt;
+			while (*s && *s != c)
+				++s;
+		}
+		else
+			++s;
+	}
+	return (cnt);
+}
+
+char			**ft_split(char const *s, char c)
+{
+	char	**ret;
+	char	*from;
+	size_t	idx;
+	size_t	size;
+
+	size = sizeof(char*) * get_word_cnt(s, c) + 1;
+	if(!(ret = (char**)malloc(size)))
+		return (0);
+	idx = 0;
+	while (*s)
+	{
+		if (*s != c)
+		{
+			from = (char*)s;
+			while (*s && *s != c)
+				++s;
+			size = s - from + 1;
+			if(!(ret[idx] = (char*)malloc(size)))
+				return (0);
+			ft_strlcpy(ret[idx++], from, size);
+		}
+		else
+			++s;
+	}
+	ret[idx] = 0;
+	return (ret);
+}
