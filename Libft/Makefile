@@ -1,20 +1,24 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -c
-
 TARGET = libft.a
-SOURCES = $(wildcard *.c)
-OBJECTS = $(SOURCES:.c=.o)
+CFLAGS = -Wall -Wextra -Werror
+
+BSRCS = $(wildcard *_p.c)
+BOBJS = $(BSRCS:.c=.o)
+SRCS = $(filter-out $(BSRCS),$(wildcard *.c))
+OBJS = $(SRCS:.c=.o)
 
 all: $(TARGET)
 
+$(TARGET): $(OBJS)
+	ar cr $@ $^
+
+bonus: $(OBJS) $(BOBJS)
+	ar cr $@ $^
+
 %.o: %.c
-	$(CC) $(CFLAGS) $< -o $@
-	
-$(TARGET): $(OBJECTS)
-	ar cr $@ $(OBJECTS)
+	gcc $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJECTS)
+	rm -f $(OBJS) $(BOBJS)
 
 fclean: clean
 	rm -f $(TARGET)
