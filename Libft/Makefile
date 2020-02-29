@@ -1,26 +1,30 @@
-TARGET = libft.a
+NAME = libft.a
+HEADER = libft.h
 CFLAGS = -Wall -Wextra -Werror
+CC = gcc
+AR = ar rc
+RM = rm -f
 
-BSRCS = $(wildcard *_bonus.c)
-BOBJS = $(BSRCS:.c=.o)
-SRCS = $(filter-out $(BSRCS),$(wildcard *.c))
+SRCS = $(filter-out $(BSRCS), $(wildcard *.c))
+BSRCS = $(wildcard *lst*.c)
 OBJS = $(SRCS:.c=.o)
+BOBJS = $(BSRCS:.c=.o)
 
-all: $(TARGET)
+all: $(NAME)
 
-$(TARGET): $(OBJS)
-	ar cr $@ $^
+$(NAME): $(OBJS)
+	$(AR) $@ $^
 
-bonus: $(BOBJS) $(OBJS)
-	ar cr $(TARGET) $^
+bonus: $(BOBJS) 
+	$(AR) $(NAME) $^
 
-%.o: %.c
-	gcc $(CFLAGS) -c $< -o $@
+%.o: %.c $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(BOBJS)
+	$(RM) $(OBJS) $(BOBJS)
 
 fclean: clean
-	rm -f $(TARGET)
+	$(RM) $(NAME)
 
 re: fclean all

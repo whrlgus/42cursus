@@ -2,7 +2,6 @@
 # define LIBFT_H
 
 # include <stdlib.h>
-# include <fcntl.h>
 # include <unistd.h>
 
 typedef struct	s_list
