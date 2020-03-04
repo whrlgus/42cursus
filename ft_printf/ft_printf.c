@@ -187,7 +187,7 @@ const char *base_10 = "0123456789";
 const char *base_16_l = "0123456789abcdef";
 const char *base_16_u = "0123456789ABCDEF";
 
-void convert_integer(va_list ap, char type, char *str, int neg)
+void convert_integer_signed(va_list ap, char type, char *str, int neg)
 {
 	size_t cnt;
 	
@@ -220,10 +220,36 @@ void convert_integer(va_list ap, char type, char *str, int neg)
 		++len;
 	}
 	
+	if (len < g_format->width)
+	{
+		cnt = g_format->width - len;
+		if (g_format->minus)
+			str = append_chars(str, ' ', cnt, 0);
+		else
+			str = append_chars(str, ' ', cnt, 1);
+		len += cnt;
+	}
+	ft_putstr_fd(str, 1);
+	free(str);
+}
+
+void convert_integer_unsigned(va_list ap, char type, char *str)
+{
+	size_t cnt;
+	
+	int len = (int)ft_strlen(str);
+	if (len < g_format->precision)
+	{
+		cnt = g_format->precision - len;
+		str = append_chars(str, '0', cnt, 1);
+		len += cnt;
+	}
+	
 	if (g_format->hash && (type == 'x' || type == 'X'))
 	{
 		str = append_chars(str, (type == 'x' ? 'x' : 'X'), 1, 1);
 		str = append_chars(str, '0', 1, 1);
+		len += 2;
 	}
 	
 	if (len < g_format->width)
@@ -290,7 +316,7 @@ void convert(va_list ap)
 	{
 		num = read_signed_integer(ap);
 		str = (num >= 0 ? ft_itoa_pos(num, base_10) : ft_itoa_pos(-num, base_10));
-		convert_integer(ap, t, str, num < 0);
+		convert_integer_signed(ap, t, str, num < 0);
 	}
 	else if (t == 'u' || t == 'x' || t == 'X')
 	{
@@ -298,7 +324,7 @@ void convert(va_list ap)
 			base_ptr = base_10;
 		else
 			base_ptr = t == 'x' ? base_16_l : base_16_u;
-		convert_integer(ap, t, ft_itoa_pos(read_unsigned_integer(ap),base_ptr), 0);
+		convert_integer_unsigned(ap, t, ft_itoa_pos(read_unsigned_integer(ap),base_ptr));
 	}
 	else if (t == 'f' || t == 'e' || t == 'g')
 		type_third(ap);
