@@ -4,7 +4,7 @@
 # include <stdarg.h>
 #include "/Users/gihyun/github/42cursus/Libft/libft.h"
 
-typedef struct	s_format{
+typedef struct	s_format_info{
 	int 		minus;
 	int 		plus;
 	int 		space;
@@ -14,11 +14,11 @@ typedef struct	s_format{
 	int 		precision;
 	int			length;
 	char		type;
-}				t_format;
+}				t_fmt_info;
 
 
 
 int ft_printf(const char *, ...);
-void convert(va_list ap);
+size_t print_format_string(size_t len);
 void pad_space_for_i(char **str, size_t *len);
 #endif
