@@ -1,18 +1,11 @@
 #include "ft_printf.h"
-
-typedef struct	s_format{
-	int 		minus;
-	int 		plus;
-	int 		space;
-	int 		zero;
-	int 		hash;
-	int 		width;
-	int 		precision;
-	int			length;
-	char		type;
-}				t_format;
-
 t_format *g_format;
+
+const char *g_base_10 = "0123456789";
+const char *g_base_16_l = "0123456789abcdef";
+const char *g_base_16_u = "0123456789ABCDEF";
+
+// MARK:- check 함수
 
 int check_specifier(const char **fmt)
 {
@@ -115,11 +108,27 @@ int check_length(const char **fmt)
 	return (1);
 }
 
-char *append_chars(char *src, char c, size_t cnt, int front)
+int check_format(const char **fmt, va_list ap)
+{
+	while (check_flags(fmt) || check_width(fmt, ap) ||
+	check_precision(fmt, ap) || check_length(fmt))
+		;
+	g_format->type = (*(*fmt)++);
+	if(!g_format->type)
+		return (0);
+	convert(ap);
+	return (1);
+}
+
+// MARK:- 보조 함수
+
+char *append_chars(char *src, char c, long long cnt, int front)
 {
 	char *ret;
 	char *chars;
 	
+	if (cnt <= 0)
+		return src;
 	chars = malloc(sizeof(char) * (cnt + 1));
 	chars[cnt] = 0;
 	ft_memset(chars, c, cnt);
@@ -183,112 +192,190 @@ unsigned long long read_unsigned_integer(va_list ap)
 		return (unsigned int)va_arg(ap, unsigned int);
 }
 
-const char *base_10 = "0123456789";
-const char *base_16_l = "0123456789abcdef";
-const char *base_16_u = "0123456789ABCDEF";
-
-void convert_integer_signed(va_list ap, char type, char *str, int neg)
+void init_format()
 {
-	size_t cnt;
+	g_format->minus = 0;
+	g_format->plus = 0;
+	g_format->space = 0;
+	g_format->hash = 0;
+	g_format->zero = 0;
+	g_format->width = 0;
+	g_format->precision = -1;
+	g_format->length = -1;
+	g_format->type = 0;
+}
+
+// MARK:- convert 함수
+
+// MARK: integer 공통 함수
+
+void pad_space_for_i(char **str, size_t *len)
+{
+	long long cnt;
 	
-	int len = (int)ft_strlen(str);
-	if (len < g_format->precision)
+	if (g_format->width > *len)
 	{
-		cnt = g_format->precision - len;
-		str = append_chars(str, '0', cnt, 1);
-		len += cnt;
+		cnt = g_format->width - *len;
+		*str = append_chars(*str, ' ', cnt, !g_format->minus);
+		*len += cnt;
 	}
+}
+
+// MARK: signed integer 함수
+void pad_zero_for_si(char **str, size_t *len, int neg)
+{
+	long long cnt;
 	
-	if (!g_format->minus && g_format->precision == -1 && len < g_format->width)
+	if (g_format->precision >= 0)
 	{
-		cnt = g_format->width - len;
-		if (neg || g_format->plus || g_format->space)
-			--cnt;
-		str = append_chars(str, '0', cnt, 1);
-		len += cnt;
+		if (g_format->precision > *len)
+		{
+			cnt = g_format->precision - *len;
+			*str = append_chars(*str, '0', cnt, 1);
+			*len += cnt;
+		}
 	}
-	
+	else
+	{
+		if (!g_format->minus && g_format->zero && g_format->width > *len)
+		{
+			cnt = g_format->width - *len;
+			if (neg || g_format->plus || g_format->space)
+				--cnt;
+			*str = append_chars(*str, '0', cnt, 1);
+			*len += cnt;
+		}
+	}
+}
+
+void add_sign_for_si(char **str, size_t *len, int neg)
+{
+	char sign;
 	
 	if (neg || g_format->plus || g_format->space)
 	{
 		if (neg)
-			str = append_chars(str, '-', 1, 1);
-		else if (g_format->plus)
-			str = append_chars(str, '+', 1, 1);
+			sign = '-';
 		else
-			str = append_chars(str, ' ', 1, 1);
-		++len;
+			sign = g_format->plus ? '+' : ' ';
+		*str = append_chars(*str, sign, 1, 1);
+		++(*len);
 	}
+}
+
+void print_integer_signed(va_list ap)
+{
+	long long num;
+	char *str;
+	size_t len;
+	int neg;
 	
-	if (len < g_format->width)
-	{
-		cnt = g_format->width - len;
-		if (g_format->minus)
-			str = append_chars(str, ' ', cnt, 0);
-		else
-			str = append_chars(str, ' ', cnt, 1);
-		len += cnt;
-	}
+	num = read_signed_integer(ap);
+	neg = (num < 0);
+	str = neg ? ft_itoa_pos(-num, g_base_10): ft_itoa_pos(num, g_base_10);
+	len = ft_strlen(str);
+	pad_zero_for_si(&str, &len, neg);
+	add_sign_for_si(&str, &len, neg);
+	pad_space_for_i(&str, &len);
 	ft_putstr_fd(str, 1);
 	free(str);
 }
 
-void convert_integer_unsigned(va_list ap, char type, char *str)
+// MARK: unsigned integer 함수
+
+void pad_zero_for_usi(char **str, size_t *len)
 {
-	size_t cnt;
+	long long cnt;
 	
-	int len = (int)ft_strlen(str);
-	if (len < g_format->precision)
+	if (g_format->precision >= 0)
 	{
-		cnt = g_format->precision - len;
-		str = append_chars(str, '0', cnt, 1);
-		len += cnt;
+		if (g_format->precision > *len)
+		{
+			cnt = g_format->precision - *len;
+			*str = append_chars(*str, '0', cnt, 1);
+			*len += cnt;
+		}
 	}
-	
-	if (g_format->hash && (type == 'x' || type == 'X'))
+	else if (g_format->zero && g_format->width > *len)
 	{
-		str = append_chars(str, (type == 'x' ? 'x' : 'X'), 1, 1);
-		str = append_chars(str, '0', 1, 1);
+		cnt = g_format->width - *len;
+		if (g_format->type != 'u' && g_format->hash)
+			cnt -= 2;
+		if (cnt > 0)
+		{
+			*str = append_chars(*str, '0', cnt, 1);
+			*len += cnt;
+		}
+	}
+}
+
+void add_prefix_for_usi(char **str, size_t *len)
+{
+	char c;
+	
+	if (g_format->hash && (g_format->type == 'x' || g_format->type == 'X'))
+	{
+		c = (g_format->type == 'x' ? 'x' : 'X');
+		*str = append_chars(*str, c, 1, 1);
+		*str = append_chars(*str, '0', 1, 1);
 		len += 2;
 	}
+}
+
+void print_integer_unsigned(va_list ap)
+{
+	unsigned long long num;
+	char *str;
+	size_t len;
 	
-	if (len < g_format->width)
-	{
-		cnt = g_format->width - len;
-		if (g_format->minus)
-			str = append_chars(str, ' ', cnt, 0);
-		else
-			str = append_chars(str, ' ', cnt, 1);
-		len += cnt;
-	}
+	num = read_signed_integer(ap);
+	if(g_format->type=='u')
+		str = ft_itoa_pos(num, g_base_10);
+	else if(g_format->type=='x')
+		str = ft_itoa_pos(num, g_base_16_l);
+	else
+		str = ft_itoa_pos(num, g_base_16_u);
+	pad_zero_for_usi(&str, &len);
+	add_prefix_for_usi(&str, &len);
+	pad_space_for_i(&str, &len);
 	ft_putstr_fd(str, 1);
 	free(str);
 }
 
+// MARK: real number 함수
 
-void type_third(va_list ap)
+void print_real_num(va_list ap)
 {
 	
 }
 
-void type_fourth(va_list ap)
+// MARK: %c 함수
+
+void print_char(va_list ap)
+{
+	ft_putchar_fd(va_arg(ap, int), 1);
+}
+
+// MARK: %s 함수
+
+void print_string(va_list ap)
 {
 	
 }
 
-void type_fifth(va_list ap)
+// MARK: %n 함수
+
+void write_num_of_chars(va_list ap)
 {
 	
 }
 
-void type_sixth(va_list ap)
-{
-	
-}
-
-void convert_nothing(char *str)
+void convert_nothing()
 {
 	size_t cnt;
+	char *str = malloc(sizeof(char) * 2);
+	str[0] = g_format->type;
+	str[1] = 0;
 	
 	if (1 < g_format->width)
 	{
@@ -304,69 +391,30 @@ void convert_nothing(char *str)
 	free(str);
 }
 
+
+
 void convert(va_list ap)
 {
 	char t;
-	char *str;
-	long long num;
-	const char *base_ptr;
 	
 	t = g_format->type;
 	if (t == 'd' || t == 'i')
-	{
-		num = read_signed_integer(ap);
-		str = (num >= 0 ? ft_itoa_pos(num, base_10) : ft_itoa_pos(-num, base_10));
-		convert_integer_signed(ap, t, str, num < 0);
-	}
+		print_integer_signed(ap);
 	else if (t == 'u' || t == 'x' || t == 'X')
-	{
-		if(t=='u')
-			base_ptr = base_10;
-		else
-			base_ptr = t == 'x' ? base_16_l : base_16_u;
-		convert_integer_unsigned(ap, t, ft_itoa_pos(read_unsigned_integer(ap),base_ptr));
-	}
+		print_integer_unsigned(ap);
 	else if (t == 'f' || t == 'e' || t == 'g')
-		type_third(ap);
+		print_real_num(ap);
 	else if (t == 'c')
-		type_fourth(ap);
+		print_char(ap);
 	else if (t == 's')
-		type_fifth(ap);
+		print_string(ap);
 	else if (t == 'n')
-		type_sixth(ap);
+		write_num_of_chars(ap);
 	else
-	{
-		str = malloc(sizeof(char) * 2);
-		str[0] = t;
-		str[1] = 0;
-		convert_nothing(str);
-	}
+		convert_nothing();
 }
 
-int check_format(const char **fmt, va_list ap)
-{
-	while (check_flags(fmt) || check_width(fmt, ap) ||
-	check_precision(fmt, ap) || check_length(fmt))
-		;
-	g_format->type = (*(*fmt)++);
-	if(!g_format->type)
-		return (0);
-	convert(ap);
-	return (1);
-}
-
-void init_format()
-{
-	g_format->minus = 0;
-	g_format->plus = 0;
-	g_format->space = 0;
-	g_format->hash = 0;
-	g_format->zero = 0;
-	g_format->width = 0;
-	g_format->precision = -1;
-	g_format->length = -1;
-	g_format->type = 0;
-}
+// MARK:-
 
 int ft_printf(const char *fmt, ...)
 {
@@ -380,7 +428,6 @@ int ft_printf(const char *fmt, ...)
 			++fmt;
 			init_format();
 			check_format(&fmt, ap);
-			
 		}
 		else
 			ft_putchar_fd(*fmt++, 1);
