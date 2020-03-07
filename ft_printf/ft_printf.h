@@ -19,6 +19,6 @@ typedef struct	s_format_info{
 
 
 int ft_printf(const char *, ...);
-size_t print_format_string(size_t len);
+size_t print_format_string(void);
 void pad_space_for_i(char **str, size_t *len);
 #endif

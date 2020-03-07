@@ -1,19 +1,19 @@
 #include "ft_printf.h"
-t_fmt_info *g_info;
-va_list g_ap;
 
-const char *g_base_10 = "0123456789";
-const char *g_base_16_l = "0123456789abcdef";
-const char *g_base_16_u = "0123456789ABCDEF";
+const char	*g_base_10;
+const char	*g_base_16_l;
+const char	*g_base_16_u;
+const char	*g_specifier;
+t_fmt_info	*g_info;
+va_list		g_ap;
 
 // MARK:- format 정보 저장을 위한 함수
 
 int read_specifier(const char **fmt)
 {
-	const char * const specifier="cspdiuxX%nfge";
-	char *ptr;
+	const char *ptr;
 	
-	ptr = (char*)specifier;
+	ptr = g_specifier;
 	while (*ptr)
 	{
 		if (**fmt==*ptr)
@@ -135,7 +135,7 @@ void pad_space_for_i(char **str, size_t *len)
 {
 	long long cnt;
 	
-	if (g_info->width > *len)
+	if (g_info->width > (long long)*len)
 	{
 		cnt = g_info->width - *len;
 		append_chars(str, ' ', cnt, !g_info->minus);
@@ -188,7 +188,7 @@ void pad_zero_for_si(char **str, size_t *len, int neg)
 	
 	if (g_info->precision >= 0)
 	{
-		if (g_info->precision > *len)
+		if (g_info->precision > (long long)*len)
 		{
 			cnt = g_info->precision - *len;
 			append_chars(str, '0', cnt, 1);
@@ -197,7 +197,7 @@ void pad_zero_for_si(char **str, size_t *len, int neg)
 	}
 	else
 	{
-		if (!g_info->minus && g_info->zero && g_info->width > *len)
+		if (!g_info->minus && g_info->zero && g_info->width > (long long)*len)
 		{
 			cnt = g_info->width - *len;
 			if (neg || g_info->plus || g_info->space)
@@ -233,6 +233,8 @@ size_t print_signed_integer(void)
 	num = read_arg_for_si();
 	neg = (num < 0);
 	str = neg ? ft_utoa(-num, g_base_10): ft_utoa(num, g_base_10);
+	if (num == 0 && g_info->precision == 0)
+		str[0] = 0;
 	len = ft_strlen(str);
 	pad_zero_for_si(&str, &len, neg);
 	add_sign_for_si(&str, &len, neg);
@@ -264,14 +266,14 @@ void pad_zero_for_usi(char **str, size_t *len)
 	
 	if (g_info->precision >= 0)
 	{
-		if (g_info->precision > *len)
+		if (g_info->precision > (long long)*len)
 		{
 			cnt = g_info->precision - *len;
 			append_chars(str, '0', cnt, 1);
 			*len += cnt;
 		}
 	}
-	else if (g_info->zero && g_info->width > *len)
+	else if (g_info->zero && g_info->width > (long long)*len)
 	{
 		cnt = g_info->width - *len;
 		if (g_info->type != 'u' && g_info->hash)
@@ -310,7 +312,11 @@ size_t print_unsigned_integer(void)
 		str = ft_utoa(num, g_base_16_l);
 	else
 		str = ft_utoa(num, g_base_16_u);
+	if (num == 0 && g_info->precision == 0)
+		str[0] = 0;
 	len = ft_strlen(str);
+	if (num == 0)
+		g_info->hash = 0;
 	pad_zero_for_usi(&str, &len);
 	add_prefix_for_usi(&str, &len);
 	pad_space_for_i(&str, &len);
@@ -338,10 +344,43 @@ size_t print_pointer(void)
 
 // TODO:- %f %e %g (real number)
 
-size_t print_real_number(void)
+typedef struct s_real_num{
+	char sign;
+	char *exponent;
+	char *fraction;
+}t_real_num;
+
+t_real_num *rm;
+
+size_t free_rm(t_real_num *rm)
 {
 	size_t len;
+	
+	len = 1 + ft_strlen(rm->exponent) + ft_strlen(rm->fraction);
+	free(rm->exponent);
+	free(rm->fraction);
 	return (len);
+}
+
+size_t print_real_number(void)
+{
+//	t_real_num *rn;
+//	double num = va_arg(g_ap, double);
+	
+//	if(g_info->type=='u')
+//		str = ft_utoa(num, g_base_10);
+//	else if(g_info->type=='x')
+//		str = ft_utoa(num, g_base_16_l);
+//	else
+//		str = ft_utoa(num, g_base_16_u);
+//	len = ft_strlen(str);
+//	pad_zero_for_usi(&str, &len);
+//	add_prefix_for_usi(&str, &len);
+//	pad_space_for_i(&str, &len);
+//	ft_putstr_fd(str, 1);
+	
+	
+	return 0;//free_rm(rm);
 }
 
 // MARK:- %c, %s, invalid type (string)
@@ -351,7 +390,7 @@ void pad_for_string(char **str, size_t *len)
 	long long cnt;
 	char c;
 	
-	if (g_info->width > *len)
+	if (g_info->width > (long long)*len)
 	{
 		cnt = g_info->width - *len;
 		c = ((g_info->minus || !g_info->zero) ? ' ' : '0');
@@ -366,7 +405,7 @@ size_t print_character(void)
 	size_t len;
 
 	str = malloc(2);
-	str[0] = va_arg(g_ap, int);
+	str[0] = g_info->length == 2 ? va_arg(g_ap, wint_t) : va_arg(g_ap, int);
 	str[1] = 0;
 	len = 1;
 	pad_for_string(&str, &len);
@@ -399,6 +438,7 @@ size_t print_invalid_type(void)
 	str = malloc(sizeof(char) * 2);
 	str[0] = g_info->type;
 	str[1] = 0;
+	len = 1;
 	pad_for_string(&str, &len);
 	ft_putstr_fd(str, 1);
 	free(str);
@@ -436,7 +476,7 @@ void init_format_info(void)
 	g_info->type = 0;
 }
 
-size_t print_format_string(size_t len)
+size_t print_format_string(void)
 {
 	char t;
 	
@@ -457,10 +497,9 @@ size_t print_format_string(size_t len)
 		return print_invalid_type();
 }
 
-void parse(const char *fmt, size_t len)
+void parse(const char *fmt, size_t *len)
 {
 	while (*fmt)
-	{
 		if (*fmt == '%')
 		{
 			++fmt;
@@ -470,24 +509,30 @@ void parse(const char *fmt, size_t len)
 				;
 			g_info->type = *(fmt++);
 			if (g_info->type == 'n')
-				write_num_of_chars(len);
+				write_num_of_chars(*len);
 			else if (g_info->type)
-				len += print_format_string(len);
+				*len += print_format_string();
 		}
 		else
 		{
 			ft_putchar_fd(*fmt++, 1);
-			++len;
+			++(*len);
 		}
-	}
 }
 
 int ft_printf(const char *fmt, ...)
 {
-	va_start(g_ap, fmt);
+	size_t ret;
+	
+	ret = 0;
+	g_base_10 = "0123456789";
+	g_base_16_l = "0123456789abcdef";
+	g_base_16_u = "0123456789ABCDEF";
+	g_specifier = "cspdiuxX%nfge";
 	g_info = malloc(sizeof(t_fmt_info));
-	parse(fmt, 0);
+	va_start(g_ap, fmt);
+	parse(fmt, &ret);
 	free(g_info);
 	va_end(g_ap);
-	return (0);
+	return (ret);
 }
