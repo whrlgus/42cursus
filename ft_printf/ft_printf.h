@@ -3,6 +3,7 @@
 
 # include <stdarg.h>
 #include "/Users/gihyun/github/42cursus/Libft/libft.h"
+#include "ft_ftoa.h"
 
 typedef struct	s_format_info{
 	int 		minus;
@@ -44,7 +45,19 @@ size_t print_pointer(void);
 size_t print_character(void);
 size_t print_string(void);
 size_t print_invalid_type(void);
+size_t print_real_number(void);
 void write_num_of_chars(size_t len);
 
 int ft_printf(const char *, ...);
+
+
+
+
+
+
+
+
+
+char *ftoa_int(char *bits);
+char *ftoa_fra(char *bits);
 #endif

@@ -7,39 +7,6 @@ const char	*g_specifier;
 t_fmt_info	*g_info;
 va_list		g_ap;
 
-
-
-// TODO:- %f %e %g (real number)
-
-typedef struct s_real_num{
-	char sign;
-	char *exponent;
-	char *fraction;
-}t_real_num;
-
-t_real_num *rm;
-
-size_t free_rm(t_real_num *rm)
-{
-	size_t len;
-	
-	len = 1 + ft_strlen(rm->exponent) + ft_strlen(rm->fraction);
-	free(rm->exponent);
-	free(rm->fraction);
-	return (len);
-}
-
-size_t print_real_number(void)
-{
-
-	
-	
-	return 0;//free_rm(rm);
-}
-
-
-
-
 // MARK:- printf
 
 static void init_format_info(void)
@@ -113,5 +80,5 @@ int ft_printf(const char *fmt, ...)
 	parse(fmt, &ret);
 	free(g_info);
 	va_end(g_ap);
-	return (ret);
+	return ((int)ret);
 }
