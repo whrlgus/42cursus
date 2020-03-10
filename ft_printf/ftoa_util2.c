@@ -1,4 +1,4 @@
-#include "normalize.h"
+#include "ft_printf.h"
 
 char *next(char *str, int num)
 {
@@ -23,11 +23,7 @@ char *next(char *str, int num)
 	return (ret);
 }
 
-int max(int a, int b)
-{
-	return a < b ? b : a;
-}
-char *init(char c)
+char *alloc_str(char c)
 {
 	char *ret;
 	
@@ -35,15 +31,6 @@ char *init(char c)
 	ret[0] = c;
 	ret[1] = 0;
 	return (ret);
-}
-
-void swap(char **a, char **b)
-{
-	char *tmp;
-	
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
 }
 
 char *add(char *a, char *b)
@@ -72,4 +59,29 @@ char *add(char *a, char *b)
 		ret[i++] = carry + '0';
 	ret[i] = 0;
 	return (ret);
+}
+
+void str_rev(char *str)
+{
+	char *ptr;
+	char tmp;
+	
+	ptr = str + ft_strlen(str) - 1;
+	while (str < ptr)
+	{
+		tmp = *ptr;
+		*ptr = *str;
+		*str = tmp;
+		++str;
+		--ptr;
+	}
+}
+
+void trim_right(char *str)
+{
+	int i;
+	
+	i = (int)ft_strlen(str) - 1;
+	while (i >= 0 && str[i] == '0')
+		str[i--] = 0;
 }

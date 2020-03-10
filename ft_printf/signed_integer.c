@@ -64,7 +64,7 @@ size_t print_signed_integer(void)
 	
 	num = read_arg();
 	neg = (num < 0);
-	str = neg ? ft_utoa(-num, g_base_10): ft_utoa(num, g_base_10);
+	str = neg ? utoa(-num, g_base_10): utoa(num, g_base_10);
 	if (num == 0 && g_info->precision == 0)
 		str[0] = 0;
 	len = ft_strlen(str);

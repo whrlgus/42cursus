@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-t_normalized_real_num *g_nrm;
+t_nrm *g_nrm;
 
 
 void round_num(char **str, int i)
@@ -35,11 +35,11 @@ void append_suffix(char **str)
 	int i;
 	
 	tmp = (g_nrm->exp < 0 ? -g_nrm->exp : g_nrm->exp);
-	i = (tmp / 100 ? 5 : 4);
+	i = (tmp / 100 ? 6 : 5);
 	suffix = malloc(i);
 	suffix[0] = 'e';
 	suffix[1] = (g_nrm->exp < 0 ? '-' : '+');
-	
+	suffix[--i] = 0;
 	while(--i > 1)
 	{
 		suffix[i] = tmp % 10 + '0';
@@ -47,10 +47,11 @@ void append_suffix(char **str)
 	}
 	new_str = ft_strjoin(*str, suffix);
 	free(*str);
+	free(suffix);
 	*str = new_str;
 }
 
-void add_floating_point()
+void insert_decimal_point()
 {
 	char *new_str;
 	int len;
@@ -103,41 +104,115 @@ void add_sign()
 		append_chars(&g_nrm->str, ' ', 1, 1);
 }
 
-void scientific()
+
+void normalize(double num, char *str_int, char *str_fra)
 {
-	int len = (int)ft_strlen(g_nrm->str);
+	if (num == 0)
+	{
+		g_nrm->exp = 0;
+		g_nrm->str = alloc_str('0');
+	}
+	else
+	{
+		g_nrm->neg = (num < 0);
+		if (*str_int)
+		{
+			g_nrm->exp = (int)ft_strlen(str_int) -1;
+			g_nrm->str = ft_strjoin(str_int, str_fra);
+		}
+		else
+		{
+			g_nrm->exp = 0;
+			while(str_fra[g_nrm->exp]=='0')
+				++g_nrm->exp;
+			g_nrm->str = ft_substr(str_fra, g_nrm->exp, ft_strlen(str_fra) - g_nrm->exp);
+			g_nrm->exp = -g_nrm->exp - 1;
+		}
+	}
+}
+
+
+
+size_t scientific()
+{
+	int tmp;
 	
-	if(g_info->precision >= len - 1)
-		append_chars(&g_nrm->str, '0', g_info->precision - len + 1, 0);
+	tmp = g_info->precision - (int)ft_strlen(g_nrm->str) + 1;
+	if(tmp >= 0)
+		append_chars(&g_nrm->str, '0', tmp, 0);
 	else
 	{
 		round_num(&g_nrm->str, g_info->precision + 1);
 		g_nrm->str[g_info->precision + 1] = 0;
 	}
-	add_floating_point();
+	insert_decimal_point();
 	append_suffix(&g_nrm->str);
 	pad_zero();
 	add_sign();
 	pad_space();
 	
 	ft_putstr_fd(g_nrm->str, 1);
-	ft_putstr_fd("...", 1);
+	return ft_strlen(g_nrm->str);
+}
+
+size_t decimal_fp(int num, char *str_int, char *str_fra)
+{
+	char *str;
+	int tmp;
+	
+	str=0;
+	tmp = g_info->precision - (int)ft_strlen(g_nrm->str);
+	if(tmp >= 0)
+		append_chars(&g_nrm->str, '0', tmp, 0);
+	else
+	{
+		round_num(&g_nrm->str, g_info->precision + 1);
+		g_nrm->str[g_info->precision + 1] = 0;
+	}
+	
+	pad_zero();
+	add_sign();
+	pad_space();
+	ft_putstr_fd(str, 1);
+	return 10;
 }
 
 size_t print_real_number(void)
 {
 	double num;
+	char *str_int;
+	char *str_fra;
+	size_t ret;
+	
+	num = va_arg(g_ap, double);
+	ft_ftoa(num, &str_int, &str_fra);
 	
 	if (g_info->precision == -1)
 		g_info->precision = 6;
-	g_nrm = malloc(sizeof(t_normalized_real_num));
-	normalize(va_arg(g_ap, double));
+	
+	ret=0;
 	if(g_info->type == 'e')
 	{
-		scientific();
+		g_nrm = malloc(sizeof(t_nrm));
+		normalize(num, str_int, str_fra);
+		ret = scientific();
+		free(g_nrm->str);
+		free(g_nrm);
 	}
-
-	return 0;
+	else if(g_info->type == 'f')
+	{
+		
+		ret = decimal_fp(num, str_int, str_fra);
+	}
+	else
+	{
+		
+	}
+	
+	free(str_int);
+	free(str_fra);
+	
+	return (ret);
 }
 
 

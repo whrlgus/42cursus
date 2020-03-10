@@ -61,11 +61,11 @@ size_t print_unsigned_integer(void)
 	
 	num = read_arg();
 	if(g_info->type=='u')
-		str = ft_utoa(num, g_base_10);
+		str = utoa(num, g_base_10);
 	else if(g_info->type=='x')
-		str = ft_utoa(num, g_base_16_l);
+		str = utoa(num, g_base_16_l);
 	else
-		str = ft_utoa(num, g_base_16_u);
+		str = utoa(num, g_base_16_u);
 	if (num == 0 && g_info->precision == 0)
 		str[0] = 0;
 	len = ft_strlen(str);
@@ -86,7 +86,7 @@ size_t print_pointer(void)
 	
 	g_info->hash = 1;
 	g_info->type = 'x';
-	str = ft_utoa((long long)va_arg(g_ap, void*), g_base_16_l);
+	str = utoa((long long)va_arg(g_ap, void*), g_base_16_l);
 	len = ft_strlen(str);
 	pad_zero(&str, &len);
 	add_prefix(&str, &len);
