@@ -1,6 +1,6 @@
-#include "ft_ftoa.h"
+#include "normalize.h"
 
-static char *ftoa_int(char *bits)
+char *ftoa_int(char *bits)
 {
 	char *ret;
 	char *num;
@@ -26,7 +26,7 @@ static char *ftoa_int(char *bits)
 	return (ret);
 }
 
-static char *ftoa_fra(char *bits)
+char *ftoa_fra(char *bits)
 {
 	char *ret;
 	char *num;
@@ -53,13 +53,6 @@ static char *ftoa_fra(char *bits)
 	return (ret);
 }
 
-
-typedef struct s_real_num
-{
-	int exp;
-	char *bits;
-}	t_real_num;
-
 t_real_num *g_rm;
 
 void init_g_rm(long long *num)
@@ -70,7 +63,8 @@ void init_g_rm(long long *num)
 	g_rm->bits = malloc(54);
 	g_rm->bits[0] = '1';
 	g_rm->bits[53] = 0;
-	i = 63;
+	i = 64;
+	g_nrm->neg = 1&(*num>>(--i));
 	g_rm->exp=0;
 	while (--i >= 52)
 		g_rm->exp = (g_rm->exp<<1) + 1&(*num>>i);
@@ -123,9 +117,9 @@ char *make_str_fra(void)
 	else
 	{
 		tmp = malloc(-g_rm->exp + 54);
-		i = g_rm->exp;
+		i = g_rm->exp - 1;
 		j = 0;
-		while (i < 0)
+		while (++i < 0)
 			tmp[j++] = '0';
 		while (i < 53)
 			tmp[j++] = g_rm->bits[i++];
@@ -152,24 +146,60 @@ void str_rev(char *str)
 	}
 }
 
-char *ft_ftoa(double num)
+void trim_right(char *str)
 {
-	char *ret;
+	int i;
+	
+	i = (int)ft_strlen(str) - 1;
+	while (i >= 0 && str[i] == '0')
+		str[i--] = 0;
+}
+
+void set_nrm(double num, char *str_int, char *str_fra)
+{
+	g_nrm->neg = (num < 0);
+	if (*str_int)
+	{
+		g_nrm->exp = (int)ft_strlen(str_int) -1;
+		g_nrm->str = ft_strjoin(str_int, str_fra);
+	}
+	else
+	{
+		g_nrm->exp = 0;
+		while(str_fra[g_nrm->exp]=='0')
+			++g_nrm->exp;
+		g_nrm->str = ft_substr(str_fra, g_nrm->exp, ft_strlen(str_fra) - g_nrm->exp);
+		g_nrm->exp = -g_nrm->exp - 1;
+	}
+}
+
+
+void normalize(double num)
+{
 	char *str_int;
 	char *str_fra;
-	char *tmp;
 	
+	if (num == 0)
+	{
+		g_nrm->exp = 0;
+		g_nrm->str = malloc(2);
+		g_nrm->str[0]='0';
+		g_nrm->str[1]=0;
+		return ;
+	}
 	init_g_rm(&num);
+	
 	str_int = make_str_int();
+	trim_right(str_int);
 	str_fra = make_str_fra();
 	str_rev(str_int);
 	str_rev(str_fra);
-	tmp = ft_strjoin(str_int, ".");
-	ret = ft_strjoin(tmp, str_fra);
+	trim_right(str_fra);
+	
+	set_nrm(num, str_int, str_fra);
+	
 	free(str_int);
 	free(str_fra);
-	free(tmp);
 	free(g_rm->bits);
 	free(g_rm);
-	return (ret);
 }

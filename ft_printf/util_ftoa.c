@@ -1,4 +1,4 @@
-#include "ft_ftoa.h"
+#include "normalize.h"
 
 char *next(char *str, int num)
 {

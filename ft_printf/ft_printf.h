@@ -3,7 +3,7 @@
 
 # include <stdarg.h>
 #include "/Users/gihyun/github/42cursus/Libft/libft.h"
-#include "ft_ftoa.h"
+#include "normalize.h"
 
 typedef struct	s_format_info{
 	int 		minus;
@@ -16,6 +16,12 @@ typedef struct	s_format_info{
 	int			length;
 	char		type;
 }				t_fmt_info;
+typedef struct s_normalized_real_num
+{
+	int neg;
+	int exp;
+	char *str;
+}	t_normalized_real_num;
 
 extern const char	*g_base_10;
 extern const char	*g_base_16_l;
@@ -23,7 +29,7 @@ extern const char	*g_base_16_u;
 extern const char	*g_specifier;
 extern t_fmt_info	*g_info;
 extern va_list		g_ap;
-
+extern t_normalized_real_num *g_nrm;
 
 // read format 함수
 int read_specifier(const char **fmt);
