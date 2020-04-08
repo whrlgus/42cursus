@@ -31,7 +31,7 @@ char		*ft_itoa(int n)
 	}
 	else
 		tmp = n;
-	if(!(ret = malloc(len + 1)))
+	if (!(ret = malloc(len + 1)))
 		return (0);
 	ret[len] = 0;
 	if (n < 0)
