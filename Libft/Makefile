@@ -15,7 +15,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(AR) $@ $^
 
-bonus: $(BOBJS) 
+bonus: $(BOBJS) $(OBJS)
 	$(AR) $(NAME) $^
 
 %.o: %.c $(HEADER)
