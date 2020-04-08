@@ -22,7 +22,7 @@ char		*ft_itoa(int n)
 	char			*ret;
 	int				len;
 	unsigned int	tmp;
-	
+
 	len = 1 + get_len(n / 10);
 	if (n < 0)
 	{
