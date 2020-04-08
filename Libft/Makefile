@@ -5,8 +5,8 @@ CC = gcc
 AR = ar rc
 RM = rm -f
 
-SRCS = $(filter-out $(BSRCS), $(wildcard *.c))
 BSRCS = $(wildcard *lst*.c)
+SRCS = $(filter-out $(BSRCS), $(wildcard *.c))
 OBJS = $(SRCS:.c=.o)
 BOBJS = $(BSRCS:.c=.o)
 
