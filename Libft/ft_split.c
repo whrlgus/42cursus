@@ -39,7 +39,7 @@ char			**ft_split(char const *s, char c)
 	size_t	size;
 
 	size = sizeof(char*) * get_word_cnt(s, c) + 1;
-	if(!(ret = (char**)malloc(size)))
+	if (!(ret = (char**)malloc(size)))
 		return (0);
 	idx = 0;
 	while (*s)
@@ -50,7 +50,7 @@ char			**ft_split(char const *s, char c)
 			while (*s && *s != c)
 				++s;
 			size = s - from + 1;
-			if(!(ret[idx] = (char*)malloc(size)))
+			if (!(ret[idx] = (char*)malloc(size)))
 				return (0);
 			ft_strlcpy(ret[idx++], from, size);
 		}
