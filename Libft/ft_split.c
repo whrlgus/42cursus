@@ -38,8 +38,7 @@ char			**ft_split(char const *s, char c)
 	size_t	idx;
 	size_t	size;
 
-	size = sizeof(char*) * get_word_cnt(s, c) + 1;
-	if (!(ret = (char**)malloc(size)))
+	if (!(ret = (char**)malloc(sizeof(char*) * get_word_cnt(s, c) + 1)))
 		return (0);
 	idx = 0;
 	while (*s)
