@@ -34,7 +34,7 @@ t_buffer	*new_buffer(int fd)
 	ret->next = 0;
 	if (!(ret->buf = malloc(BUFFER_SIZE + 1)))
 		return (0);
-	ret->buf[0 = 0;
+	ret->buf[0] = 0;
 	return (ret);
 }
 
