@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/16 21:57:51 by gicho             #+#    #+#             */
+/*   Updated: 2020/04/16 21:57:51 by gicho            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 int read_buf(t_buffer *buffer, char **line)
@@ -14,7 +26,8 @@ int read_buf(t_buffer *buffer, char **line)
 	while (buffer->buf[j])
 	{
 		(*line)[i++] = buffer->buf[j];
-		if (buffer->buf[j++] == '\n')
+		if (buffer->buf[j++] == '
+')
 		{
 			--i;
 			found = 1;
