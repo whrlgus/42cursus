@@ -26,8 +26,7 @@ int	read_buf(t_buffer *buffer, char **line)
 	while (buffer->buf[j])
 	{
 		(*line)[i++] = buffer->buf[j];
-		if (buffer->buf[j++] == '
-')
+		if (buffer->buf[j++] == '\n')
 		{
 			--i;
 			found = 1;
