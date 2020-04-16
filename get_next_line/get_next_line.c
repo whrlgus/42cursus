@@ -30,7 +30,7 @@ int	read_buf(t_buffer *buffer, char **line)
 		{
 			--i;
 			found = 1;
-			break;
+			break ;
 		}
 	}
 	(*line)[i] = 0;
@@ -55,7 +55,8 @@ int	get_next_line(int fd, char **line)
 	*line = 0;
 	if ((found = read_buf(buffer, line)))
 		return (found);
-	while ((size = read(fd,buffer->buf,BUFFER_SIZE)) > 0){
+	while ((size = read(fd, buffer->buf, BUFFER_SIZE)) > 0)
+	{
 		buffer->buf[size] = 0;
 		if ((found = read_buf(buffer, line)))
 			return (found);
