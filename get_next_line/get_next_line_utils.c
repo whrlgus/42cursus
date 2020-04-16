@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t		ft_strlen(const char *s)
 {
 	size_t ret;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 	return (ret);
 }
 
-t_buffer *new_buffer(int fd)
+t_buffer	*new_buffer(int fd)
 {
 	t_buffer *ret;
 
@@ -38,7 +38,7 @@ t_buffer *new_buffer(int fd)
 	return (ret);
 }
 
-t_buffer *find_buffer(t_buffer *buffer, int fd)
+t_buffer	*find_buffer(t_buffer *buffer, int fd)
 {
 	if (buffer->fd == fd)
 		return (buffer);
@@ -47,7 +47,7 @@ t_buffer *find_buffer(t_buffer *buffer, int fd)
 	return (find_buffer(buffer->next, fd));
 }
 
-int resize(char **line, size_t len)
+int			resize(char **line, size_t len)
 {
 	char	*new_line;
 	size_t	i;
