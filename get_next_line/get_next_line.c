@@ -12,12 +12,12 @@
 
 #include "get_next_line.h"
 
-int read_buf(t_buffer *buffer, char **line)
+int	read_buf(t_buffer *buffer, char **line)
 {
 	size_t	i;
 	size_t	j;
 	int		found;
-	
+
 	i = ft_strlen(*line);
 	if(!resize(line, i))
 		return (-1);
@@ -42,7 +42,7 @@ int read_buf(t_buffer *buffer, char **line)
 	return (found);
 }
 
-int get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static t_buffer	*head;
 	t_buffer		*buffer;
