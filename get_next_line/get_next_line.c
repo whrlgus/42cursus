@@ -19,15 +19,14 @@ int	read_buf(t_buffer *buffer, char **line)
 	int		found;
 
 	i = ft_strlen(*line);
-	if(!resize(line, i))
+	if (!resize(line, i))
 		return (-1);
 	found = 0;
 	j = 0;
 	while (buffer->buf[j])
 	{
 		(*line)[i++] = buffer->buf[j];
-		if (buffer->buf[j++] == '
-')
+		if (buffer->buf[j++] == '\n')
 		{
 			--i;
 			found = 1;
@@ -48,7 +47,7 @@ int	get_next_line(int fd, char **line)
 	t_buffer		*buffer;
 	int				size;
 	int				found;
-	
+
 	if (BUFFER_SIZE <= 0 || !line
 		|| (!head && !(head = new_buffer(fd)))
 		|| !(buffer = find_buffer(head, fd)))
@@ -56,7 +55,7 @@ int	get_next_line(int fd, char **line)
 	*line = 0;
 	if ((found = read_buf(buffer, line)))
 		return (found);
-	while((size = read(fd,buffer->buf,BUFFER_SIZE))>0){
+	while ((size = read(fd,buffer->buf,BUFFER_SIZE)) > 0){
 		buffer->buf[size] = 0;
 		if ((found = read_buf(buffer, line)))
 			return (found);
