@@ -19,7 +19,7 @@
 typedef struct		s_buffer
 {
 	int				fd;
-	char			*buf;
+	char			buf[BUFFER_SIZE + 1];
 	struct s_buffer	*next;
 }					t_buffer;
 
