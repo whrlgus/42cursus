@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ftoa.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/11 22:30:14 by gicho             #+#    #+#             */
+/*   Updated: 2020/07/11 22:30:14 by gicho            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 char *ftoa_int(char *bits)
@@ -87,4 +99,3 @@ void ft_ftoa(double num, char **str_int, char **str_fra)
 	free(bits_integer);
 	free(bits_fraction);
 }
-

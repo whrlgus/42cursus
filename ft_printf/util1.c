@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   util1.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/11 22:30:14 by gicho             #+#    #+#             */
+/*   Updated: 2020/07/11 22:30:14 by gicho            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void append_chars(char **src, char c, long long cnt, int front)
@@ -53,4 +65,3 @@ char *utoa(unsigned long long num, const char *base)
 	}
 	return (ret);
 }
-
