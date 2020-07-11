@@ -84,3 +84,4 @@ int			resize(char **line, size_t len)
 	*line = new_line;
 	return (1);
 }
+
