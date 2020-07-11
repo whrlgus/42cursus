@@ -58,7 +58,6 @@ void		remove_buffer(t_buffer **head, int fd)
 		*head = curr;
 		return ;
 	}
-	
 	while (prev->next->fd != fd)
 		prev = prev->next;
 	curr = find_buffer(*head, fd);
@@ -84,4 +83,3 @@ int			resize(char **line, size_t len)
 	*line = new_line;
 	return (1);
 }
-
