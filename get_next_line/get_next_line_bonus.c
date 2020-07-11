@@ -61,5 +61,6 @@ int	get_next_line(int fd, char **line)
 		if ((found = read_buf(buffer, line)))
 			return (found);
 	}
+	remove_buffer(&head, fd);
 	return (size);
 }

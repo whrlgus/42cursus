@@ -45,6 +45,27 @@ t_buffer	*find_buffer(t_buffer *buffer, int fd)
 	return (find_buffer(buffer->next, fd));
 }
 
+void		remove_buffer(t_buffer **head, int fd)
+{
+	t_buffer *prev;
+	t_buffer *curr;
+
+	prev = *head;
+	if (prev->fd == fd)
+	{
+		curr = prev->next;
+		free(prev);
+		*head = curr;
+		return ;
+	}
+	
+	while (prev->next->fd != fd)
+		prev = prev->next;
+	curr = find_buffer(*head, fd);
+	prev->next = curr->next;
+	free(curr);
+}
+
 int			resize(char **line, size_t len)
 {
 	char	*new_line;
