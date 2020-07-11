@@ -2,7 +2,7 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-#include "/Users/gihyun/github/42cursus/Libft/libft.h"
+# include "Libft/libft.h"
 
 
 typedef struct	s_format_info{

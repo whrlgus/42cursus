@@ -155,7 +155,7 @@ size_t scientific()
 	return ft_strlen(g_nrm->str);
 }
 
-size_t decimal_fp(int num, char *str_int, char *str_fra)
+size_t decimal_fp()
 {
 	char *str;
 	int tmp;
@@ -202,7 +202,7 @@ size_t print_real_number(void)
 	else if(g_info->type == 'f')
 	{
 		
-		ret = decimal_fp(num, str_int, str_fra);
+		ret = decimal_fp();
 	}
 	else
 	{

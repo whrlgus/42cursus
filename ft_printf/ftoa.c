@@ -69,9 +69,10 @@ void ft_ftoa(double num, char **str_int, char **str_fra)
 		*str_fra = alloc_str(0);
 		return ;
 	}
-	
-	bits = get_frac_bits(&num);
-	exp = get_exp(&num);
+	long long tmp;
+	tmp = (long long)num;
+	bits = get_frac_bits(&tmp);
+	exp = get_exp(&tmp);
 	bits_integer = get_bits_int(bits, exp);
 	bits_fraction = get_bits_fra(bits, exp);
 	
