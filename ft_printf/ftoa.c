@@ -20,11 +20,11 @@ char	*ftoa_int(char *bits)
 	int		i;
 
 	if (!*bits)
-		return alloc_str(0);
+		return (alloc_str(0));
 	ret = alloc_str('0');
 	num = alloc_str('1');
 	i = (int)ft_strlen(bits);
-	while(--i >= 0)
+	while (--i >= 0)
 	{
 		if (bits[i] == '1')
 		{
@@ -46,14 +46,15 @@ char	*ftoa_fra(char *bits)
 	char *tmp;
 
 	if (!*bits)
-		return alloc_str(0);
+		return (alloc_str(0));
 	ret = alloc_str('0');
 	num = alloc_str('5');
-	while(*bits)
+	while (*bits)
 	{
 		if (*bits == '1')
 		{
-			tmp = (ft_strlen(ret) > ft_strlen(num) ? add(ret, num) : add(num, ret));
+			tmp = (ft_strlen(ret) > ft_strlen(num)
+				   ? add(ret, num) : add(num, ret));
 			free(ret);
 			ret = tmp;
 		}

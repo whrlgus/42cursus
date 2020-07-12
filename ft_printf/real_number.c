@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-t_nrm *g_nrm;
+t_nrm	*g_nrm;
 
 void	add_sign(void)
 {
@@ -23,7 +23,6 @@ void	add_sign(void)
 	else if (g_info->space)
 		append_chars(&g_nrm->str, ' ', 1, 1);
 }
-
 
 void	normalize(double num, char *str_int, char *str_fra)
 {
@@ -50,8 +49,6 @@ void	normalize(double num, char *str_int, char *str_fra)
 		}
 	}
 }
-
-
 
 size_t	scientific(void)
 {
