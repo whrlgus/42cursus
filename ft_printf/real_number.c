@@ -14,104 +14,13 @@
 
 t_nrm *g_nrm;
 
-void	round_num(char **str, int i)
-{
-	int		tmp;
-	int		carry;
-	char	*new_str;
-
-	carry = ((*str)[i] >= '5');
-	while (i > 0 && carry)
-	{
-		tmp = carry + (*str)[--i] - '0';
-		(*str)[i] = ((tmp % 10) + '0');
-		carry = tmp / 10;
-	}
-	if (carry)
-	{
-		new_str = malloc(ft_strlen(*str) + 2);
-		new_str[0] = carry + '0';
-		new_str[1] = 0;
-		new_str = ft_strjoin(new_str, *str);
-		free(*str);
-		*str = new_str;
-	}
-}
-
-void	append_suffix(char **str)
-{
-	char	*new_str;
-	char	*suffix;
-	int		tmp;
-	int		i;
-
-	tmp = (g_nrm->exp < 0 ? -g_nrm->exp : g_nrm->exp);
-	i = (tmp / 100 ? 6 : 5);
-	suffix = malloc(i);
-	suffix[0] = 'e';
-	suffix[1] = (g_nrm->exp < 0 ? '-' : '+');
-	suffix[--i] = 0;
-	while(--i > 1)
-	{
-		suffix[i] = tmp % 10 + '0';
-		tmp /= 10;
-	}
-	new_str = ft_strjoin(*str, suffix);
-	free(*str);
-	free(suffix);
-	*str = new_str;
-}
-
-void	insert_decimal_point()
-{
-	char	*new_str;
-	int		len;
-
-	len = (int)ft_strlen(g_nrm->str);
-	new_str = malloc(len + 2);
-	new_str[0] = g_nrm->str[0];
-	new_str[1] = '.';
-	new_str[2] = 0;
-	ft_strlcat(new_str, g_nrm->str + 1, len + 2);
-	free(g_nrm->str);
-	g_nrm->str = new_str;
-}
-
-void	pad_zero()
-{
-	int len;
-	int cnt;
-
-	len = (int)ft_strlen(g_nrm->str);
-	if(!g_info->minus && g_info->zero && g_info->width > len)
-	{
-		cnt = g_info->width - len;
-		if (g_nrm->neg || g_info->plus || g_info->space)
-			--cnt;
-		append_chars(&g_nrm->str, '0', cnt, 1);
-	}
-}
-
-void	pad_space()
-{
-	int len;
-	int cnt;
-
-	len = (int)ft_strlen(g_nrm->str);
-	if(g_info->width > len)
-	{
-		cnt = g_info->width - len;
-		append_chars(&g_nrm->str, ' ', cnt, !g_info->minus);
-	}
-}
-
-void	add_sign()
+void	add_sign(void)
 {
 	if (g_nrm->neg)
 		append_chars(&g_nrm->str, '-', 1, 1);
-	else if(g_info->plus)
+	else if (g_info->plus)
 		append_chars(&g_nrm->str, '+', 1, 1);
-	else if(g_info->space)
+	else if (g_info->space)
 		append_chars(&g_nrm->str, ' ', 1, 1);
 }
 
@@ -134,7 +43,7 @@ void	normalize(double num, char *str_int, char *str_fra)
 		else
 		{
 			g_nrm->exp = 0;
-			while(str_fra[g_nrm->exp]=='0')
+			while (str_fra[g_nrm->exp]=='0')
 				++g_nrm->exp;
 			g_nrm->str = ft_substr(str_fra, g_nrm->exp, ft_strlen(str_fra) - g_nrm->exp);
 			g_nrm->exp = -g_nrm->exp - 1;
@@ -144,12 +53,12 @@ void	normalize(double num, char *str_int, char *str_fra)
 
 
 
-size_t	scientific()
+size_t	scientific(void)
 {
 	int tmp;
 
 	tmp = g_info->precision - (int)ft_strlen(g_nrm->str) + 1;
-	if(tmp >= 0)
+	if (tmp >= 0)
 		append_chars(&g_nrm->str, '0', tmp, 0);
 	else
 	{
@@ -162,17 +71,17 @@ size_t	scientific()
 	add_sign();
 	pad_space();
 	ft_putstr_fd(g_nrm->str, 1);
-	return ft_strlen(g_nrm->str);
+	return (ft_strlen(g_nrm->str));
 }
 
-size_t	decimal_fp()
+size_t	decimal_fp(void)
 {
 	char	*str;
 	int		tmp;
 
 	str = 0;
 	tmp = g_info->precision - (int)ft_strlen(g_nrm->str);
-	if(tmp >= 0)
+	if (tmp >= 0)
 		append_chars(&g_nrm->str, '0', tmp, 0);
 	else
 	{

@@ -47,7 +47,7 @@ extern const char	*g_base_16_u;
 extern const char	*g_specifier;
 extern t_fmt_info	*g_info;
 extern va_list		g_ap;
-extern t_nrm *g_nrm;
+extern t_nrm		*g_nrm;
 
 int read_specifier(const char **fmt);
 int read_flags(const char **fmt);

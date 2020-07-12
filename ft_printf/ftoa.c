@@ -28,7 +28,8 @@ char	*ftoa_int(char *bits)
 	{
 		if (bits[i] == '1')
 		{
-			tmp = (ft_strlen(ret) > ft_strlen(num) ? add(ret, num) : add(num, ret));
+			tmp = (ft_strlen(ret) > ft_strlen(num) ?
+				   add(ret, num) : add(num, ret));
 			free(ret);
 			ret = tmp;
 		}
