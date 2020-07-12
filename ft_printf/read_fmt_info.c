@@ -15,7 +15,7 @@
 int read_specifier(const char **fmt)
 {
 	const char *ptr;
-	
+
 	ptr = g_specifier;
 	while (*ptr)
 	{
@@ -32,7 +32,7 @@ int read_specifier(const char **fmt)
 int read_flags(const char **fmt)
 {
 	char c;
-	
+
 	c = **fmt;
 	if (c == '-')
 		g_info->minus = 1;
@@ -53,6 +53,7 @@ int read_flags(const char **fmt)
 int read_width(const char **fmt)
 {
 	char c = **fmt;
+
 	if (c == '*'){
 		g_info->width = va_arg(g_ap, int);
 		if (g_info->width < 0)
@@ -61,7 +62,7 @@ int read_width(const char **fmt)
 			g_info->width *= -1;
 		}
 		++(*fmt);
-	}else if(ft_isdigit(c)){ // c=='0'인 조건은 검사하지 않아도 됨
+	}else if(ft_isdigit(c)){
 		g_info->width = ft_atoi(*fmt);
 		while (ft_isdigit(**fmt))
 			++(*fmt);
@@ -73,7 +74,7 @@ int read_width(const char **fmt)
 int read_precision(const char **fmt)
 {
 	char c;
-	
+
 	if(**fmt != '.')
 		return (0);
 	c = *(++(*fmt));

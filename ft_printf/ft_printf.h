@@ -16,7 +16,6 @@
 # include <stdarg.h>
 # include "Libft/libft.h"
 
-
 typedef struct	s_format_info{
 	int 		minus;
 	int 		plus;
@@ -50,21 +49,15 @@ extern t_fmt_info	*g_info;
 extern va_list		g_ap;
 extern t_nrm *g_nrm;
 
-// read format 함수
 int read_specifier(const char **fmt);
 int read_flags(const char **fmt);
 int read_width(const char **fmt);
 int read_precision(const char **fmt);
 int read_length(const char **fmt);
-
-// util 1
 void append_chars(char **src, char c, long long cnt, int front);
 void pad_space_for_i(char **str, size_t *len);
 int get_nbr_len(unsigned long long num, int base_len);
 char *utoa(unsigned long long num, const char *base);
-
-
-// 형식 지정자에 따른 printf 함수
 size_t print_signed_integer(void);
 size_t print_unsigned_integer(void);
 size_t print_pointer(void);
@@ -73,13 +66,8 @@ size_t print_string(void);
 size_t print_invalid_type(void);
 size_t print_real_number(void);
 void write_num_of_chars(size_t len);
-
 void ft_ftoa(double num, char **str_int, char **str_fra);
-
 int ft_printf(const char *, ...);
-
-
-// ftoa_util
 int get_exp(long long *num);
 char *get_frac_bits(long long *num);
 char *get_bits_int(char *bits, int exp);

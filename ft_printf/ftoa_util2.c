@@ -14,11 +14,11 @@
 
 char *next(char *str, int num)
 {
-	char *ret;
-	int i;
-	int carry;
-	int tmp;
-	
+	char	*ret;
+	int		i;
+	int		carry;
+	int		tmp;
+
 	ret = malloc(ft_strlen(str) + 2);
 	i = 0;
 	carry = 0;
@@ -38,7 +38,7 @@ char *next(char *str, int num)
 char *alloc_str(char c)
 {
 	char *ret;
-	
+
 	ret = malloc(2);
 	ret[0] = c;
 	ret[1] = 0;
@@ -47,11 +47,11 @@ char *alloc_str(char c)
 
 char *add(char *a, char *b)
 {
-	char *ret;
-	int i;
-	int carry;
-	int tmp;
-	
+	char	*ret;
+	int		i;
+	int		carry;
+	int		tmp;
+
 	ret = malloc(ft_strlen(a) + 2);
 	i = 0;
 	carry = 0;
@@ -77,7 +77,7 @@ void str_rev(char *str)
 {
 	char *ptr;
 	char tmp;
-	
+
 	ptr = str + ft_strlen(str) - 1;
 	while (str < ptr)
 	{
@@ -92,7 +92,7 @@ void str_rev(char *str)
 void trim_right(char *str)
 {
 	int i;
-	
+
 	i = (int)ft_strlen(str) - 1;
 	while (i >= 0 && str[i] == '0')
 		str[i--] = 0;

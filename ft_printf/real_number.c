@@ -14,13 +14,12 @@
 
 t_nrm *g_nrm;
 
-
 void round_num(char **str, int i)
 {
-	int tmp;
-	int carry;
-	char *new_str;
-	
+	int		tmp;
+	int		carry;
+	char	*new_str;
+
 	carry = ((*str)[i] >= '5');
 	while (i > 0 && carry)
 	{
@@ -41,11 +40,11 @@ void round_num(char **str, int i)
 
 void append_suffix(char **str)
 {
-	char *new_str;
-	char *suffix;
-	int tmp;
-	int i;
-	
+	char	*new_str;
+	char	*suffix;
+	int		tmp;
+	int		i;
+
 	tmp = (g_nrm->exp < 0 ? -g_nrm->exp : g_nrm->exp);
 	i = (tmp / 100 ? 6 : 5);
 	suffix = malloc(i);
@@ -65,9 +64,9 @@ void append_suffix(char **str)
 
 void insert_decimal_point()
 {
-	char *new_str;
-	int len;
-	
+	char	*new_str;
+	int		len;
+
 	len = (int)ft_strlen(g_nrm->str);
 	new_str = malloc(len + 2);
 	new_str[0] = g_nrm->str[0];
@@ -82,7 +81,7 @@ void pad_zero()
 {
 	int len;
 	int cnt;
-	
+
 	len = (int)ft_strlen(g_nrm->str);
 	if(!g_info->minus && g_info->zero && g_info->width > len)
 	{
@@ -97,7 +96,7 @@ void pad_space()
 {
 	int len;
 	int cnt;
-	
+
 	len = (int)ft_strlen(g_nrm->str);
 	if(g_info->width > len)
 	{
@@ -148,7 +147,7 @@ void normalize(double num, char *str_int, char *str_fra)
 size_t scientific()
 {
 	int tmp;
-	
+
 	tmp = g_info->precision - (int)ft_strlen(g_nrm->str) + 1;
 	if(tmp >= 0)
 		append_chars(&g_nrm->str, '0', tmp, 0);
@@ -169,9 +168,9 @@ size_t scientific()
 
 size_t decimal_fp()
 {
-	char *str;
-	int tmp;
-	
+	char	*str;
+	int		tmp;
+
 	str=0;
 	tmp = g_info->precision - (int)ft_strlen(g_nrm->str);
 	if(tmp >= 0)
@@ -181,7 +180,6 @@ size_t decimal_fp()
 		round_num(&g_nrm->str, g_info->precision + 1);
 		g_nrm->str[g_info->precision + 1] = 0;
 	}
-	
 	pad_zero();
 	add_sign();
 	pad_space();
@@ -191,17 +189,15 @@ size_t decimal_fp()
 
 size_t print_real_number(void)
 {
-	double num;
-	char *str_int;
-	char *str_fra;
-	size_t ret;
-	
+	double	num;
+	char	*str_int;
+	char	*str_fra;
+	size_t	ret;
+
 	num = va_arg(g_ap, double);
 	ft_ftoa(num, &str_int, &str_fra);
-	
 	if (g_info->precision == -1)
 		g_info->precision = 6;
-	
 	ret=0;
 	if(g_info->type == 'e')
 	{
@@ -216,13 +212,7 @@ size_t print_real_number(void)
 		
 		ret = decimal_fp();
 	}
-	else
-	{
-		
-	}
-	
 	free(str_int);
 	free(str_fra);
-	
 	return (ret);
 }

@@ -14,11 +14,11 @@
 
 char *ftoa_int(char *bits)
 {
-	char *ret;
-	char *num;
-	char *tmp;
-	int i;
-	
+	char	*ret;
+	char	*num;
+	char	*tmp;
+	int		i;
+
 	if (!*bits)
 		return alloc_str(0);
 	ret = alloc_str('0');
@@ -43,7 +43,7 @@ char *ftoa_fra(char *bits)
 	char *ret;
 	char *num;
 	char *tmp;
-	
+
 	if (!*bits)
 		return alloc_str(0);
 	ret = alloc_str('0');
@@ -70,11 +70,11 @@ char *ftoa_fra(char *bits)
 
 void ft_ftoa(double num, char **str_int, char **str_fra)
 {
-	char *bits;
-	char *bits_integer;
-	char *bits_fraction;
-	int exp;
-	
+	char	*bits;
+	char	*bits_integer;
+	char	*bits_fraction;
+	int		exp;
+
 	if (num == 0)
 	{
 		*str_int = alloc_str(0);
@@ -87,14 +87,12 @@ void ft_ftoa(double num, char **str_int, char **str_fra)
 	exp = get_exp(&tmp);
 	bits_integer = get_bits_int(bits, exp);
 	bits_fraction = get_bits_fra(bits, exp);
-	
 	*str_int = ftoa_int(bits_integer);
 	trim_right(*str_int);
 	*str_fra = ftoa_fra(bits_fraction);
 	str_rev(*str_int);
 	str_rev(*str_fra);
 	trim_right(*str_fra);
-	
 	free(bits);
 	free(bits_integer);
 	free(bits_fraction);

@@ -19,8 +19,6 @@ const char	*g_specifier;
 t_fmt_info	*g_info;
 va_list		g_ap;
 
-// MARK:- printf
-
 static void init_format_info(void)
 {
 	g_info->minus = 0;
@@ -37,7 +35,7 @@ static void init_format_info(void)
 static size_t print_format_string(void)
 {
 	char t;
-	
+
 	t = g_info->type;
 	if (t == 'd' || t == 'i')
 		return print_signed_integer();
@@ -81,7 +79,7 @@ static void parse(const char *fmt, size_t *len)
 int ft_printf(const char *fmt, ...)
 {
 	size_t ret;
-	
+
 	ret = 0;
 	g_base_10 = "0123456789";
 	g_base_16_l = "0123456789abcdef";

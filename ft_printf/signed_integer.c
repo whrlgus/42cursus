@@ -29,7 +29,7 @@ static long long read_arg(void)
 static void pad_zero(char **str, size_t *len, int neg)
 {
 	long long cnt;
-	
+
 	if (g_info->precision >= 0)
 	{
 		if (g_info->precision > (long long)*len)
@@ -55,7 +55,7 @@ static void pad_zero(char **str, size_t *len, int neg)
 static void add_sign(char **str, size_t *len, int neg)
 {
 	char sign;
-	
+
 	if (neg || g_info->plus || g_info->space)
 	{
 		if (neg)
@@ -69,11 +69,11 @@ static void add_sign(char **str, size_t *len, int neg)
 
 size_t print_signed_integer(void)
 {
-	long long num;
-	char *str;
-	size_t len;
-	int neg;
-	
+	long long	num;
+	char		*str;
+	size_t		len;
+	int			neg;
+
 	num = read_arg();
 	neg = (num < 0);
 	str = neg ? utoa(-num, g_base_10): utoa(num, g_base_10);

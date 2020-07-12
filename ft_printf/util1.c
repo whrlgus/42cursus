@@ -16,7 +16,7 @@ void append_chars(char **src, char c, long long cnt, int front)
 {
 	char *tmp;
 	char *chars;
-	
+
 	if (cnt <= 0)
 		return ;
 	chars = malloc(sizeof(char) * (cnt + 1));
@@ -34,7 +34,7 @@ void append_chars(char **src, char c, long long cnt, int front)
 void pad_space_for_i(char **str, size_t *len)
 {
 	long long cnt;
-	
+
 	if (g_info->width > (long long)*len)
 	{
 		cnt = g_info->width - *len;
@@ -53,7 +53,7 @@ char *utoa(unsigned long long num, const char *base)
 	int len;
 	char *ret;
 	int base_len;
-	
+
 	base_len = (int)ft_strlen(base);
 	len = 1 + get_nbr_len(num / base_len, base_len);
 	ret = malloc(sizeof(char) * (len + 1));

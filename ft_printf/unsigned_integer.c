@@ -29,7 +29,7 @@ static unsigned long long read_arg(void)
 static void pad_zero(char **str, size_t *len)
 {
 	long long cnt;
-	
+
 	if (g_info->precision >= 0)
 	{
 		if (g_info->precision > (long long)*len)
@@ -55,7 +55,7 @@ static void pad_zero(char **str, size_t *len)
 static void add_prefix(char **str, size_t *len)
 {
 	char c;
-	
+
 	if (g_info->hash && (g_info->type == 'x' || g_info->type == 'X'))
 	{
 		c = (g_info->type == 'x' ? 'x' : 'X');
@@ -67,10 +67,10 @@ static void add_prefix(char **str, size_t *len)
 
 size_t print_unsigned_integer(void)
 {
-	unsigned long long num;
-	char *str;
-	size_t len;
-	
+	unsigned long long	num;
+	char				*str;
+	size_t				len;
+
 	num = read_arg();
 	if(g_info->type=='u')
 		str = utoa(num, g_base_10);
@@ -93,9 +93,9 @@ size_t print_unsigned_integer(void)
 
 size_t print_pointer(void)
 {
-	char *str;
-	size_t len;
-	
+	char	*str;
+	size_t	len;
+
 	g_info->hash = 1;
 	g_info->type = 'x';
 	str = utoa((long long)va_arg(g_ap, void*), g_base_16_l);

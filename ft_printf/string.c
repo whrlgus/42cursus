@@ -14,9 +14,9 @@
 
 static void pad(char **str, size_t *len)
 {
-	long long cnt;
-	char c;
-	
+	long long	cnt;
+	char		c;
+
 	if (g_info->width > (long long)*len)
 	{
 		cnt = g_info->width - *len;
@@ -28,11 +28,11 @@ static void pad(char **str, size_t *len)
 
 size_t print_character(void)
 {
-	char *str;
-	size_t len;
+	char	*str;
+	size_t	len;
 
 	str = malloc(2);
-	str[0] = va_arg(g_ap, int);//(g_info->length == 2 ? va_arg(g_ap, wint_t) : va_arg(g_ap, int));
+	str[0] = va_arg(g_ap, int);
 	str[1] = 0;
 	len = 1;
 	pad(&str, &len);
@@ -43,9 +43,9 @@ size_t print_character(void)
 
 size_t print_string(void)
 {
-	char *str;
-	size_t len;
-	
+	char	*str;
+	size_t	len;
+
 	str = va_arg(g_ap, char*);
 	if(str == 0)
 		str = "(null)";
@@ -62,9 +62,9 @@ size_t print_string(void)
 
 size_t print_invalid_type(void)
 {
-	char *str;
-	size_t len;
-	
+	char	*str;
+	size_t	len;
+
 	str = malloc(sizeof(char) * 2);
 	str[0] = g_info->type;
 	str[1] = 0;
