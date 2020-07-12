@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char *next(char *str, int num)
+char	*next(char *str, int num)
 {
 	char	*ret;
 	int		i;
@@ -35,7 +35,7 @@ char *next(char *str, int num)
 	return (ret);
 }
 
-char *alloc_str(char c)
+char	*alloc_str(char c)
 {
 	char *ret;
 
@@ -45,7 +45,7 @@ char *alloc_str(char c)
 	return (ret);
 }
 
-char *add(char *a, char *b)
+char	*add(char *a, char *b)
 {
 	char	*ret;
 	int		i;
@@ -73,7 +73,7 @@ char *add(char *a, char *b)
 	return (ret);
 }
 
-void str_rev(char *str)
+void	str_rev(char *str)
 {
 	char *ptr;
 	char tmp;
@@ -89,7 +89,7 @@ void str_rev(char *str)
 	}
 }
 
-void trim_right(char *str)
+void	trim_right(char *str)
 {
 	int i;
 

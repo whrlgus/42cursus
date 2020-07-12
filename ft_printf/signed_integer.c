@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static long long read_arg(void)
+static long long	read_arg(void)
 {
 	if (g_info->length == 3)
 		return va_arg(g_ap, long long);
@@ -26,7 +26,7 @@ static long long read_arg(void)
 		return (int)va_arg(g_ap, int);
 }
 
-static void pad_zero(char **str, size_t *len, int neg)
+static void			pad_zero(char **str, size_t *len, int neg)
 {
 	long long cnt;
 
@@ -52,7 +52,7 @@ static void pad_zero(char **str, size_t *len, int neg)
 	}
 }
 
-static void add_sign(char **str, size_t *len, int neg)
+static void			add_sign(char **str, size_t *len, int neg)
 {
 	char sign;
 
@@ -67,7 +67,7 @@ static void add_sign(char **str, size_t *len, int neg)
 	}
 }
 
-size_t print_signed_integer(void)
+size_t				print_signed_integer(void)
 {
 	long long	num;
 	char		*str;

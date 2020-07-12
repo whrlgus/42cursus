@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void pad(char **str, size_t *len)
+static void		pad(char **str, size_t *len)
 {
 	long long	cnt;
 	char		c;
@@ -26,7 +26,7 @@ static void pad(char **str, size_t *len)
 	}
 }
 
-size_t print_character(void)
+size_t			print_character(void)
 {
 	char	*str;
 	size_t	len;
@@ -41,13 +41,13 @@ size_t print_character(void)
 	return (len);
 }
 
-size_t print_string(void)
+size_t			print_string(void)
 {
 	char	*str;
 	size_t	len;
 
 	str = va_arg(g_ap, char*);
-	if(str == 0)
+	if (str == 0)
 		str = "(null)";
 	if (g_info->precision != -1)
 		str = ft_substr(str, 0, g_info->precision);
@@ -60,7 +60,7 @@ size_t print_string(void)
 	return (len);
 }
 
-size_t print_invalid_type(void)
+size_t			print_invalid_type(void)
 {
 	char	*str;
 	size_t	len;

@@ -14,7 +14,7 @@
 
 t_nrm *g_nrm;
 
-void round_num(char **str, int i)
+void	round_num(char **str, int i)
 {
 	int		tmp;
 	int		carry;
@@ -38,7 +38,7 @@ void round_num(char **str, int i)
 	}
 }
 
-void append_suffix(char **str)
+void	append_suffix(char **str)
 {
 	char	*new_str;
 	char	*suffix;
@@ -62,7 +62,7 @@ void append_suffix(char **str)
 	*str = new_str;
 }
 
-void insert_decimal_point()
+void	insert_decimal_point()
 {
 	char	*new_str;
 	int		len;
@@ -77,7 +77,7 @@ void insert_decimal_point()
 	g_nrm->str = new_str;
 }
 
-void pad_zero()
+void	pad_zero()
 {
 	int len;
 	int cnt;
@@ -92,7 +92,7 @@ void pad_zero()
 	}
 }
 
-void pad_space()
+void	pad_space()
 {
 	int len;
 	int cnt;
@@ -105,7 +105,7 @@ void pad_space()
 	}
 }
 
-void add_sign()
+void	add_sign()
 {
 	if (g_nrm->neg)
 		append_chars(&g_nrm->str, '-', 1, 1);
@@ -116,7 +116,7 @@ void add_sign()
 }
 
 
-void normalize(double num, char *str_int, char *str_fra)
+void	normalize(double num, char *str_int, char *str_fra)
 {
 	if (num == 0)
 	{
@@ -144,7 +144,7 @@ void normalize(double num, char *str_int, char *str_fra)
 
 
 
-size_t scientific()
+size_t	scientific()
 {
 	int tmp;
 
@@ -161,17 +161,16 @@ size_t scientific()
 	pad_zero();
 	add_sign();
 	pad_space();
-	
 	ft_putstr_fd(g_nrm->str, 1);
 	return ft_strlen(g_nrm->str);
 }
 
-size_t decimal_fp()
+size_t	decimal_fp()
 {
 	char	*str;
 	int		tmp;
 
-	str=0;
+	str = 0;
 	tmp = g_info->precision - (int)ft_strlen(g_nrm->str);
 	if(tmp >= 0)
 		append_chars(&g_nrm->str, '0', tmp, 0);
@@ -184,10 +183,10 @@ size_t decimal_fp()
 	add_sign();
 	pad_space();
 	ft_putstr_fd(str, 1);
-	return 10;
+	return (10);
 }
 
-size_t print_real_number(void)
+size_t	print_real_number(void)
 {
 	double	num;
 	char	*str_int;

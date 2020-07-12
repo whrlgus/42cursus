@@ -12,14 +12,14 @@
 
 #include "ft_printf.h"
 
-int read_specifier(const char **fmt)
+int		read_specifier(const char **fmt)
 {
 	const char *ptr;
 
 	ptr = g_specifier;
 	while (*ptr)
 	{
-		if (**fmt==*ptr)
+		if (**fmt == *ptr)
 		{
 			g_info->type = *((*fmt)++);
 			return (1);
@@ -29,7 +29,7 @@ int read_specifier(const char **fmt)
 	return (0);
 }
 
-int read_flags(const char **fmt)
+int		read_flags(const char **fmt)
 {
 	char c;
 
@@ -50,7 +50,7 @@ int read_flags(const char **fmt)
 	return (1);
 }
 
-int read_width(const char **fmt)
+int		read_width(const char **fmt)
 {
 	char c = **fmt;
 
@@ -71,11 +71,11 @@ int read_width(const char **fmt)
 	return (1);
 }
 
-int read_precision(const char **fmt)
+int		read_precision(const char **fmt)
 {
 	char c;
 
-	if(**fmt != '.')
+	if (**fmt != '.')
 		return (0);
 	c = *(++(*fmt));
 	g_info->precision = 0;
@@ -90,7 +90,7 @@ int read_precision(const char **fmt)
 	return (1);
 }
 
-int read_length(const char **fmt)
+int		read_length(const char **fmt)
 {
 	if (**fmt == 'h')
 	{

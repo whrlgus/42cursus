@@ -19,7 +19,7 @@ const char	*g_specifier;
 t_fmt_info	*g_info;
 va_list		g_ap;
 
-static void init_format_info(void)
+static void		init_format_info(void)
 {
 	g_info->minus = 0;
 	g_info->plus = 0;
@@ -32,28 +32,28 @@ static void init_format_info(void)
 	g_info->type = 0;
 }
 
-static size_t print_format_string(void)
+static size_t	print_format_string(void)
 {
 	char t;
 
 	t = g_info->type;
 	if (t == 'd' || t == 'i')
-		return print_signed_integer();
+		return (print_signed_integer());
 	else if (t == 'u' || t == 'x' || t == 'X')
-		return print_unsigned_integer();
+		return (print_unsigned_integer());
 	else if (t == 'f' || t == 'e' || t == 'g')
-		return print_real_number();
+		return (print_real_number());
 	else if (t == 'c')
-		return print_character();
+		return (print_character());
 	else if (t == 's')
-		return print_string();
+		return (print_string());
 	else if (t == 'p')
-		return print_pointer();
+		return (print_pointer());
 	else
-		return print_invalid_type();
+		return (print_invalid_type());
 }
 
-static void parse(const char *fmt, size_t *len)
+static void		parse(const char *fmt, size_t *len)
 {
 	while (*fmt)
 		if (*fmt == '%')
@@ -76,7 +76,7 @@ static void parse(const char *fmt, size_t *len)
 		}
 }
 
-int ft_printf(const char *fmt, ...)
+int				ft_printf(const char *fmt, ...)
 {
 	size_t ret;
 

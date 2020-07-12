@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void write_num_of_chars(size_t len)
+void	write_num_of_chars(size_t len)
 {
 	if (g_info->length == 3)
 		*va_arg(g_ap, long long*) = len;

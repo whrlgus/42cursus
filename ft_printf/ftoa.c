@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char *ftoa_int(char *bits)
+char	*ftoa_int(char *bits)
 {
 	char	*ret;
 	char	*num;
@@ -38,7 +38,7 @@ char *ftoa_int(char *bits)
 	return (ret);
 }
 
-char *ftoa_fra(char *bits)
+char	*ftoa_fra(char *bits)
 {
 	char *ret;
 	char *num;
@@ -68,7 +68,7 @@ char *ftoa_fra(char *bits)
 	return (ret);
 }
 
-void ft_ftoa(double num, char **str_int, char **str_fra)
+void	ft_ftoa(double num, char **str_int, char **str_fra)
 {
 	char	*bits;
 	char	*bits_integer;

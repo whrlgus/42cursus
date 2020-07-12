@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static unsigned long long read_arg(void)
+static unsigned long long	read_arg(void)
 {
 	if (g_info->length == 3)
 		return va_arg(g_ap, unsigned long long);
@@ -26,7 +26,7 @@ static unsigned long long read_arg(void)
 		return (unsigned int)va_arg(g_ap, unsigned int);
 }
 
-static void pad_zero(char **str, size_t *len)
+static void					pad_zero(char **str, size_t *len)
 {
 	long long cnt;
 
@@ -52,7 +52,7 @@ static void pad_zero(char **str, size_t *len)
 	}
 }
 
-static void add_prefix(char **str, size_t *len)
+static void					add_prefix(char **str, size_t *len)
 {
 	char c;
 
@@ -65,7 +65,7 @@ static void add_prefix(char **str, size_t *len)
 	}
 }
 
-size_t print_unsigned_integer(void)
+size_t						print_unsigned_integer(void)
 {
 	unsigned long long	num;
 	char				*str;
@@ -91,7 +91,7 @@ size_t print_unsigned_integer(void)
 	return (len);
 }
 
-size_t print_pointer(void)
+size_t						print_pointer(void)
 {
 	char	*str;
 	size_t	len;

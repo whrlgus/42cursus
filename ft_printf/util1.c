@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void append_chars(char **src, char c, long long cnt, int front)
+void	append_chars(char **src, char c, long long cnt, int front)
 {
 	char *tmp;
 	char *chars;
@@ -31,7 +31,7 @@ void append_chars(char **src, char c, long long cnt, int front)
 	*src = tmp;
 }
 
-void pad_space_for_i(char **str, size_t *len)
+void	pad_space_for_i(char **str, size_t *len)
 {
 	long long cnt;
 
@@ -43,12 +43,12 @@ void pad_space_for_i(char **str, size_t *len)
 	}
 }
 
-int get_nbr_len(unsigned long long num, int base_len)
+int		get_nbr_len(unsigned long long num, int base_len)
 {
 	return num ? 1 + get_nbr_len(num / base_len, base_len) : 0;
 }
 
-char *utoa(unsigned long long num, const char *base)
+char	*utoa(unsigned long long num, const char *base)
 {
 	int len;
 	char *ret;

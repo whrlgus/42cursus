@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int get_exp(long long *num)
+int		get_exp(long long *num)
 {
 	int ret;
 	int i;
@@ -25,7 +25,7 @@ int get_exp(long long *num)
 	return (ret);
 }
 
-char *get_frac_bits(long long *num)
+char	*get_frac_bits(long long *num)
 {
 	char	*ret;
 	int		i;
@@ -39,14 +39,13 @@ char *get_frac_bits(long long *num)
 	return (ret);
 }
 
-char *get_bits_int(char *bits, int exp)
+char	*get_bits_int(char *bits, int exp)
 {
 	char	*ret;
 	int		i;
 
 	if (exp < 0)
-		return alloc_str(0);
-	
+		return (alloc_str(0));
 	ret = malloc(exp + 1);
 	i = -1;
 	while (++i < exp && i < 52)
@@ -57,14 +56,14 @@ char *get_bits_int(char *bits, int exp)
 	return (ret);
 }
 
-char *get_bits_fra(char *bits, int exp)
+char	*get_bits_fra(char *bits, int exp)
 {
 	char	*ret;
 	int		i;
 	int		j;
 
 	if (exp > 52)
-		return alloc_str(0);
+		return (alloc_str(0));
 	ret = malloc(-exp + 54);
 	i = exp - 1;
 	j = 0;
