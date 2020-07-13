@@ -33,7 +33,7 @@ static void		pad(char **str, int cnt)
 void			set_conv_c(char **str, char c)
 {
 	int cnt;
-	
+
 	*str = malloc(2);
 	(*str)[0] = c;
 	(*str)[1] = 0;
@@ -45,7 +45,7 @@ void			set_conv_c(char **str, char c)
 void			set_conv_s(char **str)
 {
 	int cnt;
-	
+
 	*str = va_arg(g_ap, char*);
 	if (*str == 0)
 		*str = "(null)";

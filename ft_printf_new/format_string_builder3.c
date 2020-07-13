@@ -35,7 +35,7 @@ static void		pad_zero(char **str, int neg)
 static void		add_sign(char **str)
 {
 	char *tmp;
-	
+
 	tmp = *str;
 	*str = ft_strjoin("-", *str);
 	free(tmp);

@@ -56,7 +56,7 @@ static void		init_format_info(void)
 void			parse(const char *fmt, size_t *len)
 {
 	char *str;
-	
+
 	while (*fmt)
 		if (*fmt == '%')
 		{
