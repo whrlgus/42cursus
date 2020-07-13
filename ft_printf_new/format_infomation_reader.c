@@ -66,7 +66,7 @@ int		read_precision(const char **fmt)
 		g_fmt_info->precision = va_arg(g_ap, int);
 		++(*fmt);
 	}
-	else if(ft_isdigit(c))
+	else if (ft_isdigit(c))
 	{
 		g_fmt_info->precision = ft_atoi(*fmt);
 		while (ft_isdigit(**fmt))

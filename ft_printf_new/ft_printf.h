@@ -41,7 +41,6 @@ void				set_conv_ux(char **str, char *base);
 void				set_conv_p(char **str);
 void				set_conv_di(char **str);
 
-
 char				*string(char c, int cnt);
 char				*utoa(long long num, const char *base);
 void				pad_with_leading_zeros(char **str, int cnt);
