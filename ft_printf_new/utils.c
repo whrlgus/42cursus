@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char*		string(char c, int cnt)
+char		*string(char c, int cnt)
 {
 	char *str;
 
@@ -30,9 +30,9 @@ static int	get_nbr_len(long long num, int base_len)
 
 char		*utoa(long long num, const char *base)
 {
-	int len;
-	char *ret;
-	int base_len;
+	int		len;
+	char	*ret;
+	int		base_len;
 
 	base_len = (int)ft_strlen(base);
 	len = 1 + get_nbr_len(num / base_len, base_len);
@@ -56,7 +56,7 @@ void		pad_with_leading_zeros(char **str, int cnt)
 	*str = ft_strjoin_with_dealloc(left, right);
 }
 
-char*		ft_strjoin_with_dealloc(char *a, char *b)
+char		*ft_strjoin_with_dealloc(char *a, char *b)
 {
 	char	*ret;
 

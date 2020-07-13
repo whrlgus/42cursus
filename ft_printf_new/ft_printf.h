@@ -42,9 +42,9 @@ void				set_conv_p(char **str);
 void				set_conv_di(char **str);
 
 
-char*				string(char c, int cnt);
+char				*string(char c, int cnt);
 char				*utoa(long long num, const char *base);
 void				pad_with_leading_zeros(char **str, int cnt);
-char*				ft_strjoin_with_dealloc(char *a, char *b);
+char				*ft_strjoin_with_dealloc(char *a, char *b);
 
 #endif

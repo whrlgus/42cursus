@@ -19,7 +19,7 @@ char			*g_base_16_u = "0123456789ABCDEF";
 t_fmt_info		*g_fmt_info;
 va_list			g_ap;
 
-char*			get_format_string(void)
+char			*get_format_string(void)
 {
 	char t;
 	char *format_str;
