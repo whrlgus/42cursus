@@ -17,10 +17,10 @@
 # include "Libft/libft.h"
 
 typedef struct		s_format_info{
-	int 			minus;
-	int 			zero;
-	int 			width;
-	int 			precision;
+	int				minus;
+	int				zero;
+	int				width;
+	int				precision;
 	char			type;
 }					t_fmt_info;
 
@@ -37,7 +37,7 @@ int					read_precision(const char **fmt);
 
 void				set_conv_c(char **str, char c);
 void				set_conv_s(char **str);
-void				set_conv_uxX(char **str, char *base);
+void				set_conv_ux(char **str, char *base);
 void				set_conv_p(char **str);
 void				set_conv_di(char **str);
 

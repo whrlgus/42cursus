@@ -63,7 +63,7 @@ void			set_conv_di(char **str)
 
 	num = va_arg(g_ap, int);
 	neg = (num < 0);
-	*str = neg ? utoa(-num, g_base_10): utoa(num, g_base_10);
+	*str = neg ? utoa(-num, g_base_10) : utoa(num, g_base_10);
 	if (num == 0 && g_fmt_info->precision == 0)
 		(*str)[0] = 0;
 	len = ft_strlen(*str);

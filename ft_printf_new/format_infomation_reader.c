@@ -29,9 +29,11 @@ int		read_flags(const char **fmt)
 
 int		read_width(const char **fmt)
 {
-	char c = **fmt;
+	char c;
 
-	if (c == '*'){
+	c = **fmt;
+	if (c == '*')
+	{
 		g_fmt_info->width = va_arg(g_ap, int);
 		if (g_fmt_info->width < 0)
 		{
@@ -39,11 +41,14 @@ int		read_width(const char **fmt)
 			g_fmt_info->width *= -1;
 		}
 		++(*fmt);
-	}else if(ft_isdigit(c)){
+	}
+	else if (ft_isdigit(c))
+	{
 		g_fmt_info->width = ft_atoi(*fmt);
 		while (ft_isdigit(**fmt))
 			++(*fmt);
-	}else
+	}
+	else
 		return (0);
 	return (1);
 }
@@ -56,10 +61,13 @@ int		read_precision(const char **fmt)
 		return (0);
 	c = *(++(*fmt));
 	g_fmt_info->precision = 0;
-	if (c == '*'){
+	if (c == '*')
+	{
 		g_fmt_info->precision = va_arg(g_ap, int);
 		++(*fmt);
-	}else if(ft_isdigit(c)){
+	}
+	else if(ft_isdigit(c))
+	{
 		g_fmt_info->precision = ft_atoi(*fmt);
 		while (ft_isdigit(**fmt))
 			++(*fmt);

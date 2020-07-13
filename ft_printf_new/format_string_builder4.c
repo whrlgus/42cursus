@@ -16,6 +16,7 @@ static void		pad(char **str, int cnt)
 {
 	char	*left;
 	char	*right;
+	char	c;
 
 	if (g_fmt_info->minus)
 	{
@@ -24,13 +25,14 @@ static void		pad(char **str, int cnt)
 	}
 	else
 	{
-		left = string(g_fmt_info->zero && g_fmt_info->precision == -1 ? '0' : ' ', cnt);
+		c = g_fmt_info->zero && g_fmt_info->precision == -1 ? '0' : ' ';
+		left = string(c, cnt);
 		right = *str;
 	}
 	*str = ft_strjoin_with_dealloc(left, right);
 }
 
-void			set_conv_uxX(char **str, char *base)
+void			set_conv_ux(char **str, char *base)
 {
 	int				cnt;
 	unsigned int	num;

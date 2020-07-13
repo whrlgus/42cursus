@@ -38,7 +38,7 @@ char		*utoa(long long num, const char *base)
 	len = 1 + get_nbr_len(num / base_len, base_len);
 	ret = malloc(len + 1);
 	ret[len] = 0;
-	while(--len >= 0)
+	while (--len >= 0)
 	{
 		ret[len] = base[(num % base_len)];
 		num /= base_len;

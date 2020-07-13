@@ -30,18 +30,18 @@ char			*get_format_string(void)
 	else if (t == 's')
 		set_conv_s(&format_str);
 	else if (t == 'u')
-		set_conv_uxX(&format_str, g_base_10);
+		set_conv_ux(&format_str, g_base_10);
 	else if (t == 'x')
-		set_conv_uxX(&format_str, g_base_16_l);
+		set_conv_ux(&format_str, g_base_16_l);
 	else if (t == 'X')
-		set_conv_uxX(&format_str, g_base_16_u);
+		set_conv_ux(&format_str, g_base_16_u);
 	else if (t == 'p')
 		set_conv_p(&format_str);
 	else if (t == 'd' || t == 'i')
 		set_conv_di(&format_str);
 	else
 		set_conv_c(&format_str, t);
-	return format_str;
+	return (format_str);
 }
 
 static void		init_format_info(void)
