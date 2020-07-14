@@ -28,7 +28,7 @@ static int	get_nbr_len(long long num, int base_len)
 	return (num ? 1 + get_nbr_len(num / base_len, base_len) : 0);
 }
 
-char		*utoa(long long num, const char *base)
+char		*utoa(unsigned long long num, const char *base)
 {
 	int		len;
 	char	*ret;

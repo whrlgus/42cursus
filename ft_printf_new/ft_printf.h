@@ -30,6 +30,7 @@ extern char			*g_base_16_l;
 extern char			*g_base_16_u;
 extern va_list		g_ap;
 extern t_fmt_info	*g_fmt_info;
+extern int			g_cnull;
 
 int					read_flags(const char **fmt);
 int					read_width(const char **fmt);
@@ -42,7 +43,7 @@ void				set_conv_p(char **str);
 void				set_conv_di(char **str);
 
 char				*string(char c, int cnt);
-char				*utoa(long long num, const char *base);
+char				*utoa(unsigned long long num, const char *base);
 void				pad_with_leading_zeros(char **str, int cnt);
 char				*ft_strjoin_with_dealloc(char *a, char *b);
 

@@ -34,6 +34,12 @@ void			set_conv_c(char **str, char c)
 {
 	int cnt;
 
+	g_cnull = !c;
+	if (g_cnull && g_fmt_info->minus)
+	{
+		ft_putchar_fd(0, 1);
+		g_cnull = -1;
+	}
 	*str = malloc(2);
 	(*str)[0] = c;
 	(*str)[1] = 0;
@@ -49,7 +55,7 @@ void			set_conv_s(char **str)
 	*str = va_arg(g_ap, char*);
 	if (*str == 0)
 		*str = "(null)";
-	if (g_fmt_info->precision != -1)
+	if (g_fmt_info->precision > -1)
 		*str = ft_substr(*str, 0, g_fmt_info->precision);
 	else
 		*str = ft_strjoin(*str, "");

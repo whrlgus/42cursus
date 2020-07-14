@@ -18,6 +18,7 @@ char			*g_base_16_l = "0123456789abcdef";
 char			*g_base_16_u = "0123456789ABCDEF";
 t_fmt_info		*g_fmt_info;
 va_list			g_ap;
+int				g_cnull;
 
 char			*get_format_string(void)
 {
@@ -53,24 +54,26 @@ static void		init_format_info(void)
 	g_fmt_info->type = 0;
 }
 
-void			parse(const char *fmt, size_t *len)
+void			parse(const char *fmt, char *str, size_t *len)
 {
-	char *str;
-
 	while (*fmt)
 		if (*fmt == '%')
 		{
+			g_cnull = 0;
 			++fmt;
 			init_format_info();
 			while (read_flags(&fmt) || read_width(&fmt) ||
 			read_precision(&fmt))
 				;
-			g_fmt_info->type = *(fmt++);
+			if (!(g_fmt_info->type = *(fmt++)))
+				break ;
 			str = get_format_string();
-			*len += ft_strlen(str);
+			*len += ft_strlen(str) + (g_cnull != 0);
 			ft_putstr_fd(str, 1);
 			free(str);
 			str = 0;
+			if (g_cnull > 0)
+				ft_putchar_fd(0, 1);
 		}
 		else
 		{
@@ -86,7 +89,7 @@ int				ft_printf(const char *fmt, ...)
 	ret = 0;
 	g_fmt_info = malloc(sizeof(t_fmt_info));
 	va_start(g_ap, fmt);
-	parse(fmt, &ret);
+	parse(fmt, 0, &ret);
 	va_end(g_ap);
 	free(g_fmt_info);
 	return ((int)ret);

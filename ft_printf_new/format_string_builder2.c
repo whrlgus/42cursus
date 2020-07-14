@@ -42,10 +42,14 @@ static void		pad(char **str, int cnt)
 
 void			set_conv_p(char **str)
 {
-	int		cnt;
-	char	*tmp;
+	int			cnt;
+	char		*tmp;
+	unsigned long long	num;
 
-	*str = utoa((long long)va_arg(g_ap, void*), g_base_16_l);
+	num = (unsigned long long)va_arg(g_ap, void*);
+	*str = utoa(num, g_base_16_l);
+	if (num == 0 && g_fmt_info->precision == 0)
+		(*str)[0] = 0;
 	cnt = g_fmt_info->precision - (int)ft_strlen(*str);
 	if (cnt > 0)
 		pad_with_leading_zeros(str, cnt);

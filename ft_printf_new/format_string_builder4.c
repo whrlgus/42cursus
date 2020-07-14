@@ -25,7 +25,7 @@ static void		pad(char **str, int cnt)
 	}
 	else
 	{
-		c = g_fmt_info->zero && g_fmt_info->precision == -1 ? '0' : ' ';
+		c = g_fmt_info->zero && g_fmt_info->precision < 0 ? '0' : ' ';
 		left = string(c, cnt);
 		right = *str;
 	}
