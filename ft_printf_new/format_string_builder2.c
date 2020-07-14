@@ -42,8 +42,8 @@ static void		pad(char **str, int cnt)
 
 void			set_conv_p(char **str)
 {
-	int			cnt;
-	char		*tmp;
+	int					cnt;
+	char				*tmp;
 	unsigned long long	num;
 
 	num = (unsigned long long)va_arg(g_ap, void*);
