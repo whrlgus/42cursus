@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4C72598E2520863700A5404C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C72598D2520863700A5404C /* main.c */; };
-		4C72599B2520868800A5404C /* tmpUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C7259992520868800A5404C /* tmpUtils.c */; };
-		4C72599C2520868800A5404C /* control.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C72599A2520868800A5404C /* control.c */; };
+		4C72599B2520868800A5404C /* redraw.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C7259992520868800A5404C /* redraw.c */; };
 		4C7259A0252086B300A5404C /* libmlx.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C72599F252086B300A5404C /* libmlx.dylib */; };
+		4C7259A92520913000A5404C /* raycasting.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C7259A82520913000A5404C /* raycasting.c */; };
+		4C7259AC2520A7E000A5404C /* player.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C7259AB2520A7E000A5404C /* player.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,9 +31,10 @@
 		4C72598D2520863700A5404C /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		4C7259952520865300A5404C /* cub3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cub3d.h; sourceTree = "<group>"; };
 		4C7259972520866A00A5404C /* mlx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mlx.h; sourceTree = "<group>"; };
-		4C7259992520868800A5404C /* tmpUtils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tmpUtils.c; sourceTree = "<group>"; };
-		4C72599A2520868800A5404C /* control.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = control.c; sourceTree = "<group>"; };
+		4C7259992520868800A5404C /* redraw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = redraw.c; sourceTree = "<group>"; };
 		4C72599F252086B300A5404C /* libmlx.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmlx.dylib; path = ../libmlx.dylib; sourceTree = "<group>"; };
+		4C7259A82520913000A5404C /* raycasting.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = raycasting.c; sourceTree = "<group>"; };
+		4C7259AB2520A7E000A5404C /* player.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = player.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +72,9 @@
 				4C7259972520866A00A5404C /* mlx.h */,
 				4C7259952520865300A5404C /* cub3d.h */,
 				4C72598D2520863700A5404C /* main.c */,
-				4C72599A2520868800A5404C /* control.c */,
-				4C7259992520868800A5404C /* tmpUtils.c */,
+				4C7259992520868800A5404C /* redraw.c */,
+				4C7259A82520913000A5404C /* raycasting.c */,
+				4C7259AB2520A7E000A5404C /* player.c */,
 			);
 			path = cub3d;
 			sourceTree = "<group>";
@@ -140,9 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C72599C2520868800A5404C /* control.c in Sources */,
 				4C72598E2520863700A5404C /* main.c in Sources */,
-				4C72599B2520868800A5404C /* tmpUtils.c in Sources */,
+				4C7259A92520913000A5404C /* raycasting.c in Sources */,
+				4C7259AC2520A7E000A5404C /* player.c in Sources */,
+				4C72599B2520868800A5404C /* redraw.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
