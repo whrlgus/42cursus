@@ -39,6 +39,11 @@ typedef struct s_point_of_view
 typedef struct s_pair_double {
 	double x,y;
 }				t_pair_double;
+
+typedef struct s_pair_int {
+	int x,y;
+}				t_pair_int;
+
 extern void *mlx_ptr;
 extern void *win_ptr;
 extern int worldMap[mapWidth][mapHeight];
@@ -46,9 +51,6 @@ extern int worldMap[mapWidth][mapHeight];
 //extern double dirX, dirY; //initial direction vector
 //extern double planeX, planeY;
 extern int stop;
-
-extern int move_key;
-extern int rotate_key;
 
 extern void *img_ptr;
 extern int *data;

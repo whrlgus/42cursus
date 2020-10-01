@@ -11,58 +11,63 @@ t_point_of_view movement, rotation;
 #define max(x,y) x>y?x:y
 
 int keyboard[300];
+t_pair_int old_mouse_point, new_mouse_point;
+
+void set_player_pov(int *pov_component, int key1, int key2)
+{
+	if(keyboard[key1] && !keyboard[key2]) *pov_component = 1;
+	else if(!keyboard[key1] && keyboard[key2]) *pov_component = -1;
+	else *pov_component = 0;
+}
 
 void calc_movement(){
-	if(keyboard[key_w] && !keyboard[key_s]) movement.vertical = 1;
-	else if(!keyboard[key_w] && keyboard[key_s]) movement.vertical = -1;
-	else movement.vertical = 0;
+	int tmp = (old_mouse_point.x - new_mouse_point.x) / 2;
 	
-	if(keyboard[key_d] && !keyboard[key_a]) movement.horizontal = 1;
-	else if(!keyboard[key_d] && keyboard[key_a]) movement.horizontal = -1;
-	else movement.horizontal = 0;
+	if(tmp){
+		rotation.horizontal = tmp;
+		old_mouse_point.x = new_mouse_point.x;
+	}
+	else
+		set_player_pov(&rotation.horizontal, key_arrow_left, key_arrow_right);
 	
-	if(keyboard[key_arrow_left] && !keyboard[key_arrow_right])
-		rotation.horizontal = 1;
-	else if(!keyboard[key_arrow_left] && keyboard[key_arrow_right])
-		rotation.horizontal = -1;
-	else rotation.horizontal = 0;
+	set_player_pov(&movement.vertical, key_w, key_s);
+	set_player_pov(&movement.horizontal, key_d, key_a);
 }
 
-void key_pressed(int key){
-	printf("%d\n",key);
+int key_pressed(int key){
 	keyboard[key] = 1;
-	calc_movement();
-}
-
-void key_released(int key){
-	keyboard[key] = 0;
-	calc_movement();
-}
-
-int loop(void *param){
-	
-	update_player(&player, &movement, &rotation);
-	
-	redraw(&player);
-	usleep(1000);
-	
 	return 0;
 }
 
-void motion_detected(int button, int x, int y) {
-	printf("%d %d %d\n",button, x, y);
+int key_released(int key){
+	keyboard[key] = 0;
+	return 0;
 }
+
+int motion_notified(int x, int y) {
+	new_mouse_point.x = x;
+	return 0;
+}
+
+int loop(void *param){
+	calc_movement();
+	update_player(&player, &movement, &rotation);
+	redraw(&player);
+	usleep(1000);
+	return 0;
+}
+
+
 
 void *img_ptr;
 int *data;
+
 
 int main() {
 	player.posX = 22, player.posY = 12;  //x and y start position
 	player.dirX = -1, player.dirY = 0; //initial direction vector
 	player.planeX = 0, player.planeY = 0.66; //the 2d raycaster version of camera plane
-	
-	move_key = -1;
-	rotate_key = -1;
+
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, mapWidth, mapHeight, "gicho");
 
@@ -71,8 +76,8 @@ int main() {
 
 	mlx_hook(win_ptr, 2, 0, key_pressed, 0);
 	mlx_hook(win_ptr, 3, 0, key_released, 0);
-//	mlx_hook(win_ptr, 6, 0, motion_detected, 0);
-//	mlx_mouse_hook(win_ptr, motion_detected,0);
+	mlx_hook(win_ptr, 6, 0, motion_notified, 0);
+
 
 	mlx_loop_hook(mlx_ptr, loop, 0);
 	mlx_loop(mlx_ptr);

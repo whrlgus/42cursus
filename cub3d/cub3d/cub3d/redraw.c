@@ -40,10 +40,6 @@ int stop=0;
 
 #include <unistd.h>
 
-typedef struct s_pair_int{
-	int x,y;
-}t_pair_int;
-
 typedef struct s_ray{
 	t_pair_int map;
 	t_pair_double dir;
