@@ -10,6 +10,34 @@ t_point_of_view movement, rotation;
 #define min(x,y) x<y?x:y
 #define max(x,y) x>y?x:y
 
+int map[mapWidth][mapHeight]=
+{
+	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
+	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+};
+
 int keyboard[300];
 t_pair_int old_mouse_point, new_mouse_point;
 
@@ -51,7 +79,7 @@ int motion_notified(int x, int y) {
 
 int loop(void *param){
 	calc_movement();
-	update_player(&player, &movement, &rotation);
+	update_player(worldMap, &player, &movement, &rotation);
 	redraw(&player);
 	usleep(1000);
 	return 0;
@@ -61,17 +89,29 @@ int loop(void *param){
 
 void *img_ptr;
 int *data;
-
+int **worldMap;
 
 int main() {
-	player.posX = 22, player.posY = 12;  //x and y start position
-	player.dirX = -1, player.dirY = 0; //initial direction vector
-	player.planeX = 0, player.planeY = 0.66; //the 2d raycaster version of camera plane
+	worldMap = (int **)malloc(mapHeight * sizeof(int *));
+	int i,j;
+	for (i=0; i<mapHeight; i++)
+		worldMap[i] = (int *)malloc(mapWidth * sizeof(int));
+	
+	
+	for (i=0; i<mapHeight; ++i) {
+		for (j=0; j<mapWidth; ++j) {
+			worldMap[i][j]=map[i][j];
+		}
+	}
+	
+	player.pos.x = 22, player.pos.y = 12;  //x and y start position
+	player.dir.x = -1, player.dir.y = 0; //initial direction vector
+	player.plane.x = 0, player.plane.y = 0.66; //the 2d raycaster version of camera plane
 
 	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, mapWidth, mapHeight, "gicho");
+	win_ptr = mlx_new_window(mlx_ptr, screenWidth, screenHeight, "gicho");
 
-	img_ptr = mlx_new_image(mlx_ptr, mapWidth, mapHeight);
+	img_ptr = mlx_new_image(mlx_ptr, screenWidth, screenHeight);
 	data = (int *)mlx_get_data_addr(img_ptr, &bpp, &sl, &endian);
 
 	mlx_hook(win_ptr, 2, 0, key_pressed, 0);

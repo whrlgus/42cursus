@@ -27,6 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4C14DF752525A24200D6F396 /* player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
 		4C72598A2520863700A5404C /* cub3d */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cub3d; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C72598D2520863700A5404C /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		4C7259952520865300A5404C /* cub3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cub3d.h; sourceTree = "<group>"; };
@@ -75,6 +76,7 @@
 				4C7259992520868800A5404C /* redraw.c */,
 				4C7259A82520913000A5404C /* raycasting.c */,
 				4C7259AB2520A7E000A5404C /* player.c */,
+				4C14DF752525A24200D6F396 /* player.h */,
 			);
 			path = cub3d;
 			sourceTree = "<group>";

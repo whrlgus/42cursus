@@ -1,32 +1,6 @@
 #include "cub3d.h"
 #include<math.h>
-int worldMap[mapWidth][mapHeight]=
-{
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-};
+
 int bpp;
 int sl;
 int endian;
@@ -116,10 +90,10 @@ t_ray initRay(t_player *player, int x, int w){
 	t_ray ray;
 	double cameraX = 2 * x / (double)w - 1;
 	
-	ray.dir.x = player->dirX + player->planeX * cameraX;
-	ray.dir.y = player->dirY + player->planeY * cameraX;
-	ray.map.x = (int)player->posX;
-	ray.map.y = (int)player->posY;
+	ray.dir.x = player->dir.x + player->plane.x * cameraX;
+	ray.dir.y = player->dir.y + player->plane.y * cameraX;
+	ray.map.x = (int)player->pos.x;
+	ray.map.y = (int)player->pos.y;
 	
 	return ray;
 }
@@ -129,12 +103,12 @@ void updateImage(){
 }
 
 void redraw(t_player *player){
-	int w=mapWidth,h=mapHeight;
+	int w=screenWidth,h=screenHeight;
 	memset(data,0,h*w*4);
 	for(int x = 0; x < w; x++)
 	{
 		t_ray ray=initRay(player, x, w);
-		double perpWallDist = calcPerpWallDist(&ray,player->posX,player->posY);
+		double perpWallDist = calcPerpWallDist(&ray,player->pos.x,player->pos.y);
 		int lineHeight = (int)(h / perpWallDist);
 		int drawStart = lineHeight > h ? 0 : (h - lineHeight) / 2;
 		int drawEnd = lineHeight >= h ? h - 1 : (lineHeight + h) / 2;
