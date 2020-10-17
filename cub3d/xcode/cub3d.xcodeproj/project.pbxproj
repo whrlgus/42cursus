@@ -13,6 +13,8 @@
 		4C1B657B25315F4600BF774D /* texture.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C1B657A25315F4600BF774D /* texture.c */; };
 		4C1B65872531D88C00BF774D /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C1B65862531D88C00BF774D /* window.c */; };
 		4C1B65912531EA9A00BF774D /* raycast.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C1B65902531EA9A00BF774D /* raycast.c */; };
+		4C3A4088253B419100BD7C39 /* get_next_line_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A4081253B419100BD7C39 /* get_next_line_utils.c */; };
+		4C3A4089253B419100BD7C39 /* get_next_line.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A4082253B419100BD7C39 /* get_next_line.c */; };
 		4C72598E2520863700A5404C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C72598D2520863700A5404C /* main.c */; };
 		4C7259AC2520A7E000A5404C /* player.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C7259AB2520A7E000A5404C /* player.c */; };
 /* End PBXBuildFile section */
@@ -45,6 +47,9 @@
 		4C1B658C2531E82600BF774D /* type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = type.h; sourceTree = "<group>"; };
 		4C1B658F2531EA9A00BF774D /* raycast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = raycast.h; sourceTree = "<group>"; };
 		4C1B65902531EA9A00BF774D /* raycast.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = raycast.c; sourceTree = "<group>"; };
+		4C3A4081253B419100BD7C39 /* get_next_line_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = get_next_line_utils.c; sourceTree = "<group>"; };
+		4C3A4082253B419100BD7C39 /* get_next_line.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = get_next_line.c; sourceTree = "<group>"; };
+		4C3A4086253B419100BD7C39 /* get_next_line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = get_next_line.h; sourceTree = "<group>"; };
 		4C72598A2520863700A5404C /* cub3d */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cub3d; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C72598D2520863700A5404C /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		4C7259952520865300A5404C /* cub3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cub3d.h; sourceTree = "<group>"; };
@@ -62,6 +67,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C3A407F253B419100BD7C39 /* get_next_line */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A4081253B419100BD7C39 /* get_next_line_utils.c */,
+				4C3A4082253B419100BD7C39 /* get_next_line.c */,
+				4C3A4086253B419100BD7C39 /* get_next_line.h */,
+			);
+			path = get_next_line;
+			sourceTree = "<group>";
+		};
 		4C7259812520863700A5404C = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +97,7 @@
 		4C72598C2520863700A5404C /* cub3d */ = {
 			isa = PBXGroup;
 			children = (
+				4C3A407F253B419100BD7C39 /* get_next_line */,
 				4C1B6560253054FD00BF774D /* control.c */,
 				4C1B655F253054FD00BF774D /* control.h */,
 				4C7259952520865300A5404C /* cub3d.h */,
@@ -169,9 +185,11 @@
 			files = (
 				4C72598E2520863700A5404C /* main.c in Sources */,
 				4C1B65912531EA9A00BF774D /* raycast.c in Sources */,
+				4C3A4089253B419100BD7C39 /* get_next_line.c in Sources */,
 				4C7259AC2520A7E000A5404C /* player.c in Sources */,
 				4C1B65872531D88C00BF774D /* window.c in Sources */,
 				4C1B657B25315F4600BF774D /* texture.c in Sources */,
+				4C3A4088253B419100BD7C39 /* get_next_line_utils.c in Sources */,
 				4C1B656525305F2000BF774D /* game.c in Sources */,
 				4C1B6561253054FD00BF774D /* control.c in Sources */,
 				4C1B65762531553B00BF774D /* map.c in Sources */,

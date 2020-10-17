@@ -3,8 +3,7 @@
 
 # include <mlx.h>
 # include "game.h"
-
-#include <unistd.h>
+# include "get_next_line.h"
 
 typedef struct s_mlx {
 	void *mlx_ptr;
