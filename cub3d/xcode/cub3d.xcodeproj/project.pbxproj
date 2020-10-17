@@ -14,7 +14,6 @@
 		4C1B65872531D88C00BF774D /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C1B65862531D88C00BF774D /* window.c */; };
 		4C1B65912531EA9A00BF774D /* raycast.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C1B65902531EA9A00BF774D /* raycast.c */; };
 		4C72598E2520863700A5404C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C72598D2520863700A5404C /* main.c */; };
-		4C7259A0252086B300A5404C /* libmlx.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C72599F252086B300A5404C /* libmlx.dylib */; };
 		4C7259AC2520A7E000A5404C /* player.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C7259AB2520A7E000A5404C /* player.c */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +48,6 @@
 		4C72598A2520863700A5404C /* cub3d */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cub3d; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C72598D2520863700A5404C /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		4C7259952520865300A5404C /* cub3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cub3d.h; sourceTree = "<group>"; };
-		4C72599F252086B300A5404C /* libmlx.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmlx.dylib; path = ../libmlx.dylib; sourceTree = "<group>"; };
 		4C7259AB2520A7E000A5404C /* player.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = player.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,7 +56,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C7259A0252086B300A5404C /* libmlx.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +107,6 @@
 		4C72599E252086B200A5404C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4C72599F252086B300A5404C /* libmlx.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

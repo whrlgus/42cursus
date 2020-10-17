@@ -75,7 +75,7 @@ t_player initPlayer(void) {
 	t_player p;
 	
 	p.pos.x = 22;
-	p.pos.y = 12;  //x and y start position
+	p.pos.y = 11.5;  //x and y start position
 	p.dir.x = -1;
 	p.dir.y = 0; //initial direction vector
 	p.plane.x = 0;

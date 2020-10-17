@@ -5,7 +5,6 @@
 # include "game.h"
 
 #include <unistd.h>
-#include <string.h>
 
 typedef struct s_mlx {
 	void *mlx_ptr;
