@@ -3,7 +3,6 @@
 int **texture;
 
 t_window init_window(int width, int height){
-	texture = initTexture();
 	t_window window;
 	
 	window.width = width;

@@ -18,6 +18,7 @@ int loop(t_mlx *mlx){
 
 int main() {
 	init_game();
+	texture=initTexture();
 	
 	t_mlx mlx;
 	

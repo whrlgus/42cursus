@@ -2,6 +2,7 @@
 #define texture_h
 
 #include <stdlib.h>
+#include "mlx.h"
 
 #define texWidth 64
 #define texHeight 64
