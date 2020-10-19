@@ -14,7 +14,7 @@ t_window init_window(int width, int height){
 	return window;
 }
 
-void update_scene(int **map, t_window g_window, t_player player){
+void update_scene(char **map, t_window g_window, t_player player){
 	int w=g_window.width,h=g_window.height;
 	for(int x = 0; x < w; x++)
 	{

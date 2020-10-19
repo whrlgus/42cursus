@@ -39,7 +39,7 @@ t_pair_double calcDeltaDist(t_ray ray){
 	return deltaDist;
 }
 
-double calcPerpWallDist(int **map, t_ray *ray, double posX, double posY){
+double calcPerpWallDist(char **map, t_ray *ray, double posX, double posY){
 	t_pair_double deltaDist = calcDeltaDist(*ray);
 	t_pair_double sideDist = calcSideDist(*ray, deltaDist,posX,posY);
 	t_pair_int step = calcStep(*ray);
@@ -58,7 +58,7 @@ double calcPerpWallDist(int **map, t_ray *ray, double posX, double posY){
 			ray->map.y += step.y;
 			ray->side = 1;
 		}
-		if(map[ray->map.x][ray->map.y] > 0) break;
+		if(map[ray->map.x][ray->map.y] != '0') break;
 	}
 	if(ray->side == 0)
 		return (ray->map.x - posX + (1 - step.x) / 2) / ray->dir.x;

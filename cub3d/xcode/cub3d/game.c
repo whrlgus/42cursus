@@ -2,7 +2,7 @@
 
 t_player g_player;
 t_window g_window;
-int **g_map;
+char **g_map;
 t_control g_control;
 
 void init_game() {

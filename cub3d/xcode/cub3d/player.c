@@ -27,7 +27,7 @@ t_pair_double	calc_dir(t_player *p)
 	return (dir);
 }
 
-void	update_position(int **worldMap, t_player *p, t_pair_double dir)
+void	update_position(char **map, t_player *p, t_pair_double dir)
 {
 	double moveSpeed;
 	double nPosX;
@@ -36,8 +36,8 @@ void	update_position(int **worldMap, t_player *p, t_pair_double dir)
 	moveSpeed = 0.05;
 	nPosX = p->pos.x + dir.x * moveSpeed;
 	nPosY = p->pos.y + dir.y * moveSpeed;
-	if(worldMap[(int)nPosX][(int)p->pos.y] == 0) p->pos.x = nPosX;
-	if(worldMap[(int)p->pos.x][(int)nPosY] == 0) p->pos.y = nPosY;
+	if(map[(int)nPosX][(int)p->pos.y] == '0') p->pos.x = nPosX;
+	if(map[(int)p->pos.x][(int)nPosY] == '0') p->pos.y = nPosY;
 }
 
 void	update_direction(t_player *p)
@@ -55,7 +55,7 @@ void	update_direction(t_player *p)
 	p->plane.y = oldPlaneX * sin(rotSpeed) + p->plane.y * cos(rotSpeed);
 }
 
-void	update_player(int **map, t_player *p)
+void	update_player(char **map, t_player *p)
 {
 	t_pair_double old_dir;
 	t_pair_double old_plane;

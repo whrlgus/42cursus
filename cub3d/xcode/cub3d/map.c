@@ -28,16 +28,16 @@ int mapData[mapWidth][mapHeight]=
 	{4,4,4,4,4,4,4,4,4,4,1,1,1,2,2,2,2,2,2,3,3,3,3,3}
 };
 
-int** initMap(void) {
-	int **map = (int **)malloc(mapHeight * sizeof(int *));
+char** initMap(void) {
+	char **map = (char **)malloc(mapHeight * sizeof(char *));
 	int i,j;
 	for (i=0; i<mapHeight; i++)
-		map[i] = (int *)malloc(mapWidth * sizeof(int));
+		map[i] = (char *)malloc(mapWidth * sizeof(char));
 
 
 	for (i=0; i<mapHeight; ++i) {
 		for (j=0; j<mapWidth; ++j) {
-			map[i][j]=mapData[i][j];
+			map[i][j]=mapData[i][j] + '0';
 		}
 	}
 	return map;
