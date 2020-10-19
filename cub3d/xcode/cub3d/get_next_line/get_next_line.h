@@ -25,7 +25,7 @@ typedef struct		s_buffer
 	struct s_buffer	*next;
 }					t_buffer;
 
-size_t				ft_strlen(const char *s);
+size_t				ft_strlen_gnl(const char *s);
 t_buffer			*new_buffer(int fd);
 t_buffer			*find_buffer(t_buffer *buffer, int fd);
 void				remove_buffer(t_buffer **head, int fd);

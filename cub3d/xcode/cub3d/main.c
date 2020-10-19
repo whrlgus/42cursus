@@ -1,5 +1,6 @@
 #include "cub3d.h"
-
+#include <fcntl.h>
+#include <stdio.h>
 void redraw(t_mlx mlx){
 	for(int i=0;i<g_window.height;++i)
 		for(int j=0;j<g_window.width;++j)
@@ -11,12 +12,27 @@ int loop(t_mlx *mlx){
 	calc_movement(&g_player, &g_control);
 	update_player(g_map, &g_player);
 	update_scene(g_map, g_window, g_player);
+	
+	printf("%f %f\n",g_player.plane.x,g_player.plane.y);
 	redraw(*mlx);
 	usleep(1000);
 	return 0;
 }
 
-int main() {
+
+
+int main(int argc, const char* argv[]) {
+	
+	char *file_path = "/Users/gihyun/tmp/1.cub";
+	t_string_array conf;
+	if(read_file(file_path, &conf) == -1)
+		return -1;
+	if(!is_valid_conf(&conf))
+		return print_error(cuberror(invalid_config_format));
+	
+	
+	
+	
 	init_game();
 	texture=initTexture();
 	
@@ -35,41 +51,3 @@ int main() {
 
 	return 0;
 }
-/*
- R 1920 1080
- NO ./path_to_the_north_texture
- SO ./path_to_the_south_texture
- WE ./path_to_the_west_texture
- EA ./path_to_the_east_texture
- 
- S ./path_to_the_sprite_texture
- F 220,100,0
- C 225,30,0
- 
- map info
- 
- inittexture
- initsprite
- initfloor
- initceil
- initmap
- */
-
-
-//int     main(void)
-//{
-//	void    *mlx;
-//	void    *img;
-//	char    *relative_path = "/Users/gihyun/github/42cursus/cub3d/cub3d/cub3d/wood.xpm";
-//	int     img_width;
-//	int     img_height;
-//
-//	mlx = mlx_init();
-//	win_ptr = mlx_new_window(mlx, screenWidth, screenHeight, "gicho");
-//	img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
-//	data = (int *)mlx_get_data_addr(img, &bpp, &sl, &endian);
-//	mlx_put_image_to_window(mlx, win_ptr, img, 0, 0);
-//
-//	mlx_loop(mlx);
-//	return 0;
-//}

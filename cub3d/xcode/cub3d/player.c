@@ -74,12 +74,58 @@ void	update_player(int **map, t_player *p)
 t_player initPlayer(void) {
 	t_player p;
 	
-	p.pos.x = 22;
-	p.pos.y = 11.5;  //x and y start position
+	p.pos.x = 1.5;
+	p.pos.y = 1.5;  //x and y start position
 	p.dir.x = -1;
 	p.dir.y = 0; //initial direction vector
 	p.plane.x = 0;
 	p.plane.y = 0.66; //the 2d raycaster version of camera plane
 	
+	return p;
+}
+
+void set_player(t_player *p, int x, int y, char dir){
+	p->pos.x = 0.5 + x;
+	p->pos.y = 0.5 + y;
+	if(dir == 'E')
+	{
+		p->dir.y = 1;
+		p->plane.x = 0.66;
+	}
+	else if(dir == 'W')
+	{
+		p->dir.y = -1;
+		p->plane.x = -0.66;
+	}
+	else if(dir == 'S')
+	{
+		p->dir.x = 1;
+		p->plane.y = -0.66;
+	}
+	else
+	{
+		p->dir.x = -1;
+		p->plane.y = 0.66;
+	}
+}
+
+t_player init_player(t_map *map) {
+	t_player p;
+	int i;
+	int j;
+	
+	ft_bzero(&p, sizeof(p));
+	i = -1;
+	while (++i < map->size.y)
+	{
+		j = -1;
+		while (++j < map->size.x)
+			if (is_included(map->data[i][j], "EWSN"))
+			{
+				set_player(&p,j,i,map->data[i][j]);
+				map->data[i][j] = '0';
+				return p;
+			}
+	}
 	return p;
 }

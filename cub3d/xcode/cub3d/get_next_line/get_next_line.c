@@ -18,7 +18,7 @@ int	read_buf(t_buffer *buffer, char **line)
 	size_t	j;
 	int		found;
 
-	i = ft_strlen(*line);
+	i = ft_strlen_gnl(*line);
 	if (!resize(line, i))
 		return (-1);
 	found = 0;

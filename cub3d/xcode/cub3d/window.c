@@ -7,7 +7,7 @@ t_window init_window(int width, int height){
 	
 	window.width = width;
 	window.height = height;
-
+	
 	window.scene = (int**)malloc(height*sizeof(int*));
 	for(int i=0;i<height;++i)window.scene[i]=(int*)malloc(width*sizeof(int));
 	
@@ -26,7 +26,14 @@ void update_scene(int **map, t_window g_window, t_player player){
 		int drawEnd = lineHeight >= h ? h - 1 : (lineHeight + h) / 2;
 		
 		int texNum = map[ray.map.x][ray.map.y] - 1;
-
+		
+		texNum = 0;
+		if(ray.side) {
+			texNum = ray.dir.y > 0 ? 2 : 3;
+		} else {
+			texNum = ray.dir.x > 0 ? 0 : 1;
+		}
+		
 		//calculate value of wallX
 		double wallX; //where exactly the wall was hit
 		if (ray.side == 0) wallX = player.pos.y + perpWallDist * ray.dir.y;
@@ -44,15 +51,13 @@ void update_scene(int **map, t_window g_window, t_player player){
 		double texPos = (drawStart - h / 2 + lineHeight / 2) * step;
 		for(int y = drawStart; y<drawEnd; y++)
 		{
-		  // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-		  int texY = (int)texPos & (texHeight - 1);
-		  texPos += step;
-		  int color = texture[texNum][texHeight * texY + texX];
-		  //make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
-		  if(ray.side == 1) color = (color >> 1) & 8355711;
-
+			// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
+			int texY = (int)texPos & (texHeight - 1);
+			texPos += step;
+			int color = texture[texNum][texHeight * texY + texX];
+			
 			g_window.scene[y][x]=color;
-
+			
 		}
 	}
 	

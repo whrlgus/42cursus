@@ -3,7 +3,10 @@
 
 # include <mlx.h>
 # include "game.h"
+# include "libft.h"
 # include "get_next_line.h"
+# include "parse.h"
+# include "validation.h"
 
 typedef struct s_mlx {
 	void *mlx_ptr;

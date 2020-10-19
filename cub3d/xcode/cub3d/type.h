@@ -52,4 +52,48 @@ typedef struct s_ray{
 	int side;
 }t_ray;
 
+typedef struct s_rgb{
+	int r;
+	int g;
+	int b;
+}t_rgb;
+
+typedef struct s_map {
+	t_pair_int size;
+	char **data;
+}t_map;
+
+typedef struct s_texture {
+	t_pair_int size;
+	int *data;
+}t_texture;
+
+typedef struct s_cub {
+	t_window window;
+	t_player player;
+	t_texture texture[5];
+	t_rgb floor;
+	t_rgb ceil;
+	t_map map;
+}t_cub;
+
+typedef struct s_string_array {
+	int size;
+	char **ele;
+}t_string_array;
+
+enum e_conf_flags {
+	resolution_f,
+	north_f,
+	south_f,
+	west_f,
+	east_f,
+	sprite_f,
+	floor_f,
+	ceil_f,
+	map_f
+};
+
+
+
 #endif /* type_h */

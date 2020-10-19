@@ -6,7 +6,7 @@
 #include "window.h"
 #include "texture.h"
 #include "control.h"
-
+extern t_cub g_cub;
 extern t_player g_player;
 extern int **g_map;
 extern t_window g_window;
