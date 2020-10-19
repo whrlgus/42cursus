@@ -1,7 +1,5 @@
 #include "window.h"
 
-int **texture;
-
 t_window init_window(int width, int height){
 	t_window window;
 	
@@ -29,9 +27,9 @@ void update_scene(char **map, t_window g_window, t_player player){
 		
 		texNum = 0;
 		if(ray.side) {
-			texNum = ray.dir.y > 0 ? 2 : 3;
+			texNum = ray.dir.y > 0 ? 0 : 1;
 		} else {
-			texNum = ray.dir.x > 0 ? 0 : 1;
+			texNum = ray.dir.x > 0 ? 2 : 3;
 		}
 		
 		//calculate value of wallX
@@ -54,7 +52,8 @@ void update_scene(char **map, t_window g_window, t_player player){
 			// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
 			int texY = (int)texPos & (texHeight - 1);
 			texPos += step;
-			int color = texture[texNum][texHeight * texY + texX];
+			
+			int color = g_cub.texture[texNum].data[texHeight * texY + texX];
 			
 			g_window.scene[y][x]=color;
 			

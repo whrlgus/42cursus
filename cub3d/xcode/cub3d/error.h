@@ -15,7 +15,8 @@
 enum e_error{
 	invalid_file_name,
 	gnl_error,
-	invalid_config_format
+	invalid_config_format,
+	invlid_texture_file
 };
 
 char* cuberror(enum e_error type);

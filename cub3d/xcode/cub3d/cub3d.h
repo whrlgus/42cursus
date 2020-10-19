@@ -18,4 +18,6 @@ typedef struct s_mlx {
 	int endian;
 }t_mlx;
 
+int set_cub(t_cub *cub, t_string_array *conf);
+
 #endif

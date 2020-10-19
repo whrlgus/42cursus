@@ -5,7 +5,7 @@
 #include "texture.h"
 #include <stdlib.h>
 #include "raycast.h"
-extern int **texture;
+#include "cub3d.h"
 
 t_window init_window(int width, int height);
 void update_scene(char **map, t_window g_window, t_player player);

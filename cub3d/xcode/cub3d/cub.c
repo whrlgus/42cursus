@@ -5,7 +5,7 @@ t_rgb init_rgb(char *s)
 	t_rgb rgb;
 	char **token;
 	
-	token = ft_split(s, ' ');
+	token = ft_split(s, ',');
 	rgb.r = ft_atoi(token[0]);
 	rgb.r = ft_atoi(token[1]);
 	rgb.r = ft_atoi(token[2]);
@@ -16,17 +16,18 @@ t_rgb init_rgb(char *s)
 int parse_key_texture(t_cub *cub, char *key,char *file_path){
 	int ret;
 	
-	if (ft_strcmp(key, "EA"))
+	if (ft_strcmp(key, "EA") == 0)
 		ret = set_texture(&cub->texture[0], file_path);
-	else if (ft_strcmp(key, "WE"))
+	else if (ft_strcmp(key, "WE") == 0)
 		ret = set_texture(&cub->texture[1], file_path);
-	else if (ft_strcmp(key, "SO"))
+	else if (ft_strcmp(key, "SO") == 0)
 		ret = set_texture(&cub->texture[2], file_path);
-	else if (ft_strcmp(key, "NO"))
+	else if (ft_strcmp(key, "NO") == 0)
 		ret = set_texture(&cub->texture[3], file_path);
 	else
 		ret = set_texture(&cub->texture[4], file_path);
-	
+	if(!ret)
+		print_error(cuberror(invlid_texture_file));
 	return ret;
 }
 
@@ -41,10 +42,7 @@ int parse_key(t_cub *cub, char *s)
 	len = (int)ft_strlen(token[0]);
 	if (len == 1 && is_included(token[0][0], "RFC")){
 		if (token[0][0] == 'R')
-		{
-			cub->window.width = ft_atoi(token[1]);
-			cub->window.height = ft_atoi(token[2]);
-		}
+			cub->window = init_window(ft_atoi(token[1]), ft_atoi(token[2]));
 		else if (token[0][0] == 'F')
 			cub->floor = init_rgb(token[1]);
 		else
@@ -56,20 +54,20 @@ int parse_key(t_cub *cub, char *s)
 	return (1);
 }
 
-int set_cub(t_cub cub, t_string_array *conf) {
+int set_cub(t_cub *cub, t_string_array *conf) {
 	int i;
 	
-	ft_bzero(&cub, sizeof(cub));
+	ft_bzero(cub, sizeof(t_cub));
 	i = -1;
 	while(++i < conf->size && !is_included(conf->ele[i][0]," 01"))
 	{
 		if (!ft_strlen(conf->ele[i]))
 			continue;
-		if(!parse_key(&cub, conf->ele[i]))
+		if(!parse_key(cub, conf->ele[i]))
 			return (0);
 	}
-	cub.map.size = calc_size(conf, i);
-	cub.map.data = init_map(conf->ele, i, cub.map.size);
-	cub.player = init_player(&cub.map);
+	cub->map.size = calc_size(conf, i);
+	cub->map.data = init_map(conf->ele, i, cub->map.size);
+	cub->player = init_player(&cub->map);
 	return (1);
 }

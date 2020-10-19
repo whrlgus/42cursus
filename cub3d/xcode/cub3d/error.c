@@ -5,6 +5,9 @@ char* cuberror(enum e_error type){
 		return ("invalid cub file name");
 	else if (type == invalid_config_format)
 		return ("invalid configuration");
+	else if (type == invlid_texture_file)
+		return ("invalid texture file");
+	
 	return "";
 }
 
