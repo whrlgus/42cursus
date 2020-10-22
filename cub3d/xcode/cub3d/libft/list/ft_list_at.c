@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_list_at.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gicho <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 11:36:07 by gicho             #+#    #+#             */
-/*   Updated: 2020/04/08 11:36:07 by gicho            ###   ########.fr       */
+/*   Created: 2020/02/08 06:44:49 by gicho             #+#    #+#             */
+/*   Updated: 2020/02/08 07:04:02 by gicho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_list.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_list_at(t_list *begin_list, unsigned int nbr)
 {
-	t_list *ret;
+	unsigned int i;
 
-	if (!(ret = malloc(sizeof(t_list))))
-		return (0);
-	ret->content = content;
-	ret->next = 0;
-	return (ret);
+	i = 0;
+	while (i < nbr)
+	{
+		if (!begin_list)
+			return (0);
+		begin_list = begin_list->next;
+		++i;
+	}
+	return (begin_list);
 }

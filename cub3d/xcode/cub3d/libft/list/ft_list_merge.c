@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_list_merge.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gicho <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 11:36:07 by gicho             #+#    #+#             */
-/*   Updated: 2020/04/08 11:36:07 by gicho            ###   ########.fr       */
+/*   Created: 2020/02/09 21:40:23 by gicho             #+#    #+#             */
+/*   Updated: 2020/02/09 21:47:04 by gicho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_list.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_list_merge(t_list **begin_list1, t_list *begin_list2)
 {
-	t_list *tmp;
+	t_list *ptr;
 
-	if (!*lst)
-		*lst = new;
-	else
+	ptr = *begin_list1;
+	if (!ptr)
 	{
-		tmp = *lst;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
+		*begin_list1 = begin_list2;
+		return ;
 	}
+	while (ptr->next)
+		ptr = ptr->next;
+	ptr->next = begin_list2;
 }

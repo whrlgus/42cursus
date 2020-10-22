@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_list_foreach_if.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gicho <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 11:36:07 by gicho             #+#    #+#             */
-/*   Updated: 2020/04/08 11:36:07 by gicho            ###   ########.fr       */
+/*   Created: 2020/02/08 07:59:12 by gicho             #+#    #+#             */
+/*   Updated: 2020/02/08 07:59:58 by gicho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_list.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_list_foreach_if(t_list *begin_list, void (*f)(void *), void
+		*data_ref, int (*cmp)())
 {
-	if (lst && *lst)
+	while (begin_list)
 	{
-		ft_lstclear(&(*lst)->next, del);
-		ft_lstdelone(*lst, del);
-		*lst = 0;
+		if (cmp(begin_list->data, data_ref) == 0)
+			f(begin_list->data);
+		begin_list = begin_list->next;
 	}
 }

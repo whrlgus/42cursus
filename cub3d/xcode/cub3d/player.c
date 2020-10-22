@@ -36,7 +36,17 @@ void	update_position(char **map, t_player *p, t_pair_double dir)
 	moveSpeed = 0.05;
 	nPosX = p->pos.x + dir.x * moveSpeed;
 	nPosY = p->pos.y + dir.y * moveSpeed;
-	if(map[(int)nPosX][(int)p->pos.y] == '0') p->pos.x = nPosX;
+	
+//
+//	double rad=0.2;
+//	for(int i=0;i<360;++i){
+//		int x = rad * cos((double)i * M_PI / 180);
+//		int y = rad * sin((double)i * M_PI / 180);
+//		if(map[y])
+//
+//	}
+	
+	if(map[(int)nPosX][(int)(p->pos.y)] == '0') p->pos.x = nPosX;
 	if(map[(int)p->pos.x][(int)nPosY] == '0') p->pos.y = nPosY;
 }
 
@@ -71,22 +81,9 @@ void	update_player(char **map, t_player *p)
 		update_direction(p);
 }
 
-t_player initPlayer(void) {
-	t_player p;
-	
-	p.pos.x = 1.5;
-	p.pos.y = 1.5;  //x and y start position
-	p.dir.x = -1;
-	p.dir.y = 0; //initial direction vector
-	p.plane.x = 0;
-	p.plane.y = 0.66; //the 2d raycaster version of camera plane
-	
-	return p;
-}
-
 void set_player(t_player *p, int x, int y, char dir){
-	p->pos.x = 0.5 + x;
-	p->pos.y = 0.5 + y;
+	p->pos.x = 0.5 + y;
+	p->pos.y = 0.5 + x;
 	if(dir == 'E')
 	{
 		p->dir.y = 1;

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_list_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gicho <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 11:36:07 by gicho             #+#    #+#             */
-/*   Updated: 2020/04/08 11:36:07 by gicho            ###   ########.fr       */
+/*   Created: 2020/02/08 06:11:32 by gicho             #+#    #+#             */
+/*   Updated: 2020/02/08 06:14:02 by gicho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_list.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_list_size(t_list *begin_list)
 {
 	int ret;
 
 	ret = 0;
-	while (lst)
+	while (begin_list)
 	{
-		lst = lst->next;
+		begin_list = begin_list->next;
 		++ret;
 	}
 	return (ret);

@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_list_last.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gicho <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 11:36:07 by gicho             #+#    #+#             */
-/*   Updated: 2020/04/08 11:36:07 by gicho            ###   ########.fr       */
+/*   Created: 2020/02/08 06:15:24 by gicho             #+#    #+#             */
+/*   Updated: 2020/02/08 06:17:38 by gicho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_list.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_list	*ft_list_last(t_list *begin_list)
 {
-	if (!lst)
-		return (0);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	while (begin_list->next)
+		begin_list = begin_list->next;
+	return (begin_list);
 }

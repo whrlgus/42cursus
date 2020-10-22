@@ -1,6 +1,8 @@
 #ifndef type_h
 #define type_h
 
+#include "libft.h"
+
 enum Key {
 	key_arrow_up = 126,
 	key_arrow_down = 125,
@@ -68,13 +70,21 @@ typedef struct s_texture {
 	int *data;
 }t_texture;
 
+typedef struct s_sprite {
+	t_pair_double pos;
+	int tex_num;
+}t_sprite;
+
 typedef struct s_cub {
 	t_window window;
 	t_player player;
 	t_texture texture[5];
 	t_rgb floor;
 	t_rgb ceil;
+	t_list *sprite;
 	t_map map;
+	t_control control;
+	double *zbuf;
 }t_cub;
 
 typedef struct s_string_array {

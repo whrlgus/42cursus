@@ -7,5 +7,4 @@
 #include "type.h"
 
 
-int is_valid_conf(t_string_array *conf);
 #endif

@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_create_elem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gicho <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 11:36:07 by gicho             #+#    #+#             */
-/*   Updated: 2020/04/08 11:36:07 by gicho            ###   ########.fr       */
+/*   Created: 2020/02/08 01:18:02 by gicho             #+#    #+#             */
+/*   Updated: 2020/02/08 01:18:21 by gicho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_list.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+t_list	*ft_create_elem(void *data)
 {
-	if (lst)
-	{
-		del(lst->content);
-		free(lst);
-	}
+	t_list *ret;
+
+	ret = (t_list*)malloc(sizeof(t_list));
+	ret->data = data;
+	ret->next = 0;
+	return (ret);
 }

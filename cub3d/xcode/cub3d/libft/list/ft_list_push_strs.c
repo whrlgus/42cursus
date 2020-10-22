@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_list_push_strs.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gicho <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/08 11:36:07 by gicho             #+#    #+#             */
-/*   Updated: 2020/04/08 11:36:07 by gicho            ###   ########.fr       */
+/*   Created: 2020/02/08 06:22:31 by gicho             #+#    #+#             */
+/*   Updated: 2020/02/11 20:32:41 by gicho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_list.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+t_list	*ft_list_push_strs(int size, char **strs)
 {
-	new->next = *lst;
-	*lst = new;
+	t_list	*ret;
+	t_list	*tmp;
+	int		i;
+
+	ret = 0;
+	i = -1;
+	while (++i < size)
+	{
+		tmp = ret;
+		ret = ft_create_elem(strs[i]);
+		ret->next = tmp;
+	}
+	return (ret);
 }

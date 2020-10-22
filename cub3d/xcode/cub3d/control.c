@@ -1,7 +1,9 @@
 #include "control.h"
+#include "cub3d.h"
 
 int key_pressed(int key, t_control* control){
 	control->keyboard[key] = 1;
+	
 	return 0;
 }
 
