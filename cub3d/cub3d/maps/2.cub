@@ -1,0 +1,14 @@
+R 10000 480
+NO ../images/north.xpm
+SO ../images/south.xpm
+EA ../images/east.xpm
+
+S ../images/mossy.xpm
+F 0,0,139
+
+WE ../images/west.xpm
+C 124,252,0
+11111
+10S01
+10001
+11111
