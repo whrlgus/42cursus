@@ -4,8 +4,8 @@ t_window init_window(int width, int height){
 	t_window window;
 	int i;
 	
-	width = ft_min(1280, width);
-	width = ft_max(160, width);
+	width = ft_min(1000, width);
+	width = ft_max(100, width);
 	if (width * 3 != height * 4) {
 		height = (double)width * 3 / 4;
 	}

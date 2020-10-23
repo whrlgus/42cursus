@@ -10,8 +10,8 @@ void draw_background(t_window *window, t_rgb floor, t_rgb ceil) {
 	{
 		j = -1;
 		while (++j < window->height / 2)
-			window->scene[j][i] = (floor.r << 16) + (floor.g << 8) + floor.b;
+			window->scene[j][i] = (ceil.r << 16) + (ceil.g << 8) + ceil.b;
 		while (j < window->height)
-			window->scene[j++][i] = (ceil.r << 16) + (ceil.g << 8) + ceil.b;
+			window->scene[j++][i] = (floor.r << 16) + (floor.g << 8) + floor.b;
 	}
 }
