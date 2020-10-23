@@ -104,6 +104,56 @@ enum e_conf_flags {
 	map_f
 };
 
+typedef struct s_mlx {
+	void *mlx_ptr;
+	void *win_ptr;
+	void *img_ptr;
+	int *data;
+	int bpp;
+	int sl;
+	int endian;
+}t_mlx;
 
 
-#endif /* type_h */
+typedef struct s_draw_info{
+	t_ray ray;
+	double perp_wall_dist;
+	int line_h;
+	int draw_s;
+	int draw_e;
+	int tex_n;
+	double wall_x;
+}t_draw_info;
+
+typedef struct s_draw_tex_info{
+	int tex_w;
+	int tex_h;
+	int tex_x;
+	double step;
+	double tex_pos;
+}t_draw_tex_info;
+
+typedef struct s_draw_sprite_info{
+	int w;
+	int h;
+	double spriteX;
+	double spriteY;
+	double invDet;
+	double transformX;
+	double transformY;
+	int spriteScreenX;
+	int spriteHeight;
+	int drawStartY;
+	int drawEndY;
+	int spriteWidth;
+	int drawStartX;
+	int drawEndX;
+	int texWidth;
+	int texHeight;
+	int texX;
+	int texY;
+	int d;
+	unsigned int color;
+	
+}t_draw_sprite_info;
+#endif 

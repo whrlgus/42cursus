@@ -6,4 +6,4 @@
 
 char** init_map(char **strs, int start, t_pair_int size);
 t_pair_int calc_size(t_string_array *arr, int i);
-#endif /* map_h */
+#endif 

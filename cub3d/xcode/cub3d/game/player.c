@@ -1,53 +1,24 @@
 #include "player.h"
 
-t_pair_double	calc_dir(t_player *p)
-{
-	t_pair_double dir;
-	
-	dir.x = p->dir.x;
-	dir.y = p->dir.y;
-	if (p->movement.horizontal && p->movement.vertical)
-	{
-		dir.x = (p->movement.vertical * p->dir.x
-				 + p->movement.horizontal * p->dir.y) / sqrt(2);
-		dir.y = (p->movement.vertical * p->dir.y
-				 - p->movement.horizontal * p->dir.x) / sqrt(2);
-	}
-	else if (p->movement.horizontal)
-	{
-		dir.x = p->movement.horizontal * p->dir.y;
-		dir.y = -p->movement.horizontal * p->dir.x;
-	}
-	else if (p->movement.vertical)
-	{
-		dir.x *= p->movement.vertical;
-		dir.y *= p->movement.vertical;
-	}
-	
-	return (dir);
-}
 
 void	update_position(char **map, t_player *p, t_pair_double dir)
 {
 	double moveSpeed;
 	double nPosX;
 	double nPosY;
-	
+
 	moveSpeed = 0.05;
 	nPosX = p->pos.x + dir.x * moveSpeed;
 	nPosY = p->pos.y + dir.y * moveSpeed;
 	
-//
-//	double rad=0.2;
-//	for(int i=0;i<360;++i){
-//		int x = rad * cos((double)i * M_PI / 180);
-//		int y = rad * sin((double)i * M_PI / 180);
-//		if(map[y])
-//
-//	}
+	t_pair_double ndir;
+	ndir.x = nPosX;
+	ndir.y=p->pos.y;
+	update_position_sub(map, p, ndir);
+	ndir.x = p->pos.x;
+	ndir.y=nPosY;
+	update_position_sub(map, p, ndir);
 	
-	if(map[(int)nPosX][(int)(p->pos.y)] == '0') p->pos.x = nPosX;
-	if(map[(int)p->pos.x][(int)nPosY] == '0') p->pos.y = nPosY;
 }
 
 void	update_direction(t_player *p)

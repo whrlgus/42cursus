@@ -2,22 +2,9 @@
 
 t_cub g_cub;
 
-t_rgb init_rgb(char *s)
-{
-	t_rgb rgb;
-	char **token;
-	
-	token = ft_split(s, ',');
-	rgb.r = ft_atoi(token[0]);
-	rgb.r = ft_atoi(token[1]);
-	rgb.r = ft_atoi(token[2]);
-	free_2d_arr(token, 3);
-	return rgb;
-}
-
 int parse_key_texture(t_cub *cub, char *key,char *file_path){
 	int ret;
-	
+
 	if (ft_strcmp(key, "EA") == 0)
 		ret = load_texture(&cub->texture[0], file_path);
 	else if (ft_strcmp(key, "WE") == 0)
@@ -30,7 +17,7 @@ int parse_key_texture(t_cub *cub, char *key,char *file_path){
 		ret = load_texture(&cub->texture[4], file_path);
 	if(!ret)
 		print_error(cuberror(invlid_texture_file));
-	return ret;
+	return (ret);
 }
 
 int parse_key(t_cub *cub, char *s)
@@ -38,7 +25,7 @@ int parse_key(t_cub *cub, char *s)
 	char **token;
 	int cnt;
 	int len;
-	
+
 	token = ft_split(s, ' ');
 	cnt = count_token(token);
 	len = (int)ft_strlen(token[0]);
@@ -52,14 +39,13 @@ int parse_key(t_cub *cub, char *s)
 	}
 	else if (!parse_key_texture(cub, token[0], token[1]))
 		return (0);
-	cub->zbuf = malloc(sizeof(double) * cub->window.width);
 	free_2d_arr(token, cnt);
 	return (1);
 }
 
 int set_cub(t_cub *cub, t_string_array *conf) {
 	int i;
-	
+
 	ft_bzero(cub, sizeof(t_cub));
 	i = -1;
 	while(++i < conf->size && !is_included(conf->ele[i][0]," 01"))
@@ -73,6 +59,7 @@ int set_cub(t_cub *cub, t_string_array *conf) {
 	cub->map.data = init_map(conf->ele, i, cub->map.size);
 	cub->player = init_player(&cub->map);
 	init_sprite(&cub->sprite, &cub->map);
+	cub->zbuf = malloc(sizeof(double) * cub->window.width);
 	return (1);
 }
 
@@ -80,9 +67,8 @@ int init_game(char *cub_file_path)
 {
 	int ret;
 	t_string_array conf;
-	
+
 	ft_bzero(&conf, sizeof(conf));
-	
 	ret = 1;
 	if(read_file(cub_file_path, &conf) == -1)
 		ret = 0;
@@ -94,6 +80,5 @@ int init_game(char *cub_file_path)
 	else if (!set_cub(&g_cub, &conf))
 		ret = 0;
 	free_2d_arr(conf.ele, conf.size);
-	
-	return ret;
+	return (ret);
 }

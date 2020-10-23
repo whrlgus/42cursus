@@ -49,7 +49,6 @@
 		4C3A420F253C98F500BD7C39 /* ft_isalnum.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A41E4253C98F500BD7C39 /* ft_isalnum.c */; };
 		4C3A4211253C98F500BD7C39 /* ft_itoa.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A41E6253C98F500BD7C39 /* ft_itoa.c */; };
 		4C3A4212253C98F500BD7C39 /* ft_tolower.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A41E7253C98F500BD7C39 /* ft_tolower.c */; };
-		4C3A4233253CA9FE00BD7C39 /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A4232253CA9FE00BD7C39 /* parse.c */; };
 		4C3A4237253CD47400BD7C39 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A4236253CD47400BD7C39 /* error.c */; };
 		4C3A4243253D670B00BD7C39 /* read.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A4242253D670B00BD7C39 /* read.c */; };
 		4C3A4246253D671400BD7C39 /* write.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A4245253D671400BD7C39 /* write.c */; };
@@ -81,6 +80,14 @@
 		4C72598E2520863700A5404C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C72598D2520863700A5404C /* main.c */; };
 		4C7259AC2520A7E000A5404C /* player.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C7259AB2520A7E000A5404C /* player.c */; };
 		4CCFEE3725414C5700D24D89 /* sprite.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFEE3625414C5700D24D89 /* sprite.c */; };
+		4CCFEE3E25428D2C00D24D89 /* init_rgb.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFEE3D25428D2C00D24D89 /* init_rgb.c */; };
+		4CCFEE4125428DD600D24D89 /* player_util.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFEE4025428DD600D24D89 /* player_util.c */; };
+		4CCFEE452542916400D24D89 /* raycast_util.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFEE442542916400D24D89 /* raycast_util.c */; };
+		4CCFEE512542A1C700D24D89 /* draw_wall.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFEE502542A1C700D24D89 /* draw_wall.c */; };
+		4CCFEE572542A24900D24D89 /* draw_sprite.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFEE562542A24900D24D89 /* draw_sprite.c */; };
+		4CCFEE5A2542A27A00D24D89 /* draw_background.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFEE592542A27A00D24D89 /* draw_background.c */; };
+		4CCFEE5E2542A84000D24D89 /* ft_min.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFEE5D2542A84000D24D89 /* ft_min.c */; };
+		4CCFEE662542B2A800D24D89 /* hook.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFEE652542B2A800D24D89 /* hook.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -148,8 +155,6 @@
 		4C3A41E4253C98F500BD7C39 /* ft_isalnum.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_isalnum.c; sourceTree = "<group>"; };
 		4C3A41E6253C98F500BD7C39 /* ft_itoa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_itoa.c; sourceTree = "<group>"; };
 		4C3A41E7253C98F500BD7C39 /* ft_tolower.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_tolower.c; sourceTree = "<group>"; };
-		4C3A4231253CA9FE00BD7C39 /* parse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parse.h; sourceTree = "<group>"; };
-		4C3A4232253CA9FE00BD7C39 /* parse.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = parse.c; sourceTree = "<group>"; };
 		4C3A4235253CD47400BD7C39 /* error.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
 		4C3A4236253CD47400BD7C39 /* error.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
 		4C3A4241253D66FC00BD7C39 /* fileio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fileio.h; sourceTree = "<group>"; };
@@ -189,6 +194,16 @@
 		4C7259AB2520A7E000A5404C /* player.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = player.c; sourceTree = "<group>"; };
 		4CCFEE3525414C5700D24D89 /* sprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sprite.h; sourceTree = "<group>"; };
 		4CCFEE3625414C5700D24D89 /* sprite.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sprite.c; sourceTree = "<group>"; };
+		4CCFEE3D25428D2C00D24D89 /* init_rgb.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = init_rgb.c; sourceTree = "<group>"; };
+		4CCFEE4025428DD600D24D89 /* player_util.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = player_util.c; sourceTree = "<group>"; };
+		4CCFEE442542916400D24D89 /* raycast_util.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = raycast_util.c; sourceTree = "<group>"; };
+		4CCFEE482542923A00D24D89 /* draw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = draw.h; sourceTree = "<group>"; };
+		4CCFEE502542A1C700D24D89 /* draw_wall.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = draw_wall.c; sourceTree = "<group>"; };
+		4CCFEE562542A24900D24D89 /* draw_sprite.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = draw_sprite.c; sourceTree = "<group>"; };
+		4CCFEE592542A27A00D24D89 /* draw_background.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = draw_background.c; sourceTree = "<group>"; };
+		4CCFEE5D2542A84000D24D89 /* ft_min.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ft_min.c; sourceTree = "<group>"; };
+		4CCFEE642542B2A800D24D89 /* hook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hook.h; sourceTree = "<group>"; };
+		4CCFEE652542B2A800D24D89 /* hook.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hook.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,7 +222,6 @@
 			children = (
 				4C3A4081253B419100BD7C39 /* get_next_line_utils.c */,
 				4C3A4082253B419100BD7C39 /* get_next_line.c */,
-				4C3A4086253B419100BD7C39 /* get_next_line.h */,
 			);
 			path = get_next_line;
 			sourceTree = "<group>";
@@ -250,7 +264,6 @@
 				4C3A41DB253C98F500BD7C39 /* ft_substr.c */,
 				4C3A41E7253C98F500BD7C39 /* ft_tolower.c */,
 				4C3A41D3253C98F500BD7C39 /* ft_toupper.c */,
-				4C3A41CC253C98F500BD7C39 /* libft.h */,
 			);
 			path = libft;
 			sourceTree = "<group>";
@@ -258,7 +271,6 @@
 		4C3A423F253D66C100BD7C39 /* fileio */ = {
 			isa = PBXGroup;
 			children = (
-				4C3A4241253D66FC00BD7C39 /* fileio.h */,
 				4C3A4242253D670B00BD7C39 /* read.c */,
 				4C3A4245253D671400BD7C39 /* write.c */,
 			);
@@ -268,13 +280,14 @@
 		4C3A4258253DE09800BD7C39 /* utility */ = {
 			isa = PBXGroup;
 			children = (
-				4C3A4259253DE0AE00BD7C39 /* utility.h */,
 				4C3A425A253DE0AE00BD7C39 /* utility.c */,
 				4C3A4250253DC77500BD7C39 /* is_all_digit.c */,
 				4C3A424B253DC39200BD7C39 /* ft_strcmp.c */,
 				4C3A4264253DE5F300BD7C39 /* ft_max.c */,
 				4C3A4267253DE75300BD7C39 /* init_chars_array.c */,
 				4C3A4271253E045F00BD7C39 /* next_pos.c */,
+				4CCFEE3D25428D2C00D24D89 /* init_rgb.c */,
+				4CCFEE5D2542A84000D24D89 /* ft_min.c */,
 			);
 			path = utility;
 			sourceTree = "<group>";
@@ -282,21 +295,11 @@
 		4C3A425D253DE16E00BD7C39 /* validation */ = {
 			isa = PBXGroup;
 			children = (
-				4C3A4254253DDDF300BD7C39 /* validation.h */,
 				4C3A4255253DDDF300BD7C39 /* validation_conf.c */,
 				4C3A425F253DE1C100BD7C39 /* validation_map.c */,
 				4C3A426B253DFE5E00BD7C39 /* validation_key.c */,
 			);
 			path = validation;
-			sourceTree = "<group>";
-		};
-		4C3A4274253EAFAF00BD7C39 /* error */ = {
-			isa = PBXGroup;
-			children = (
-				4C3A4235253CD47400BD7C39 /* error.h */,
-				4C3A4236253CD47400BD7C39 /* error.c */,
-			);
-			path = error;
 			sourceTree = "<group>";
 		};
 		4C3A4278253EDC6D00BD7C39 /* list */ = {
@@ -317,7 +320,6 @@
 				4C3A427D253EDCD500BD7C39 /* ft_list_reverse.c */,
 				4C3A427F253EDCD500BD7C39 /* ft_list_size.c */,
 				4C3A4282253EDCD500BD7C39 /* ft_list_sort.c */,
-				4C3A428B253EDCD600BD7C39 /* ft_list.h */,
 				4C3A427C253EDCD500BD7C39 /* ft_sorted_list_insert.c */,
 			);
 			path = list;
@@ -343,33 +345,15 @@
 		4C72598C2520863700A5404C /* cub3d */ = {
 			isa = PBXGroup;
 			children = (
-				4C1B6560253054FD00BF774D /* control.c */,
-				4C1B655F253054FD00BF774D /* control.h */,
-				4C7259952520865300A5404C /* cub3d.h */,
-				4C3A4274253EAFAF00BD7C39 /* error */,
+				4C72598D2520863700A5404C /* main.c */,
+				4CCFEE692542B62100D24D89 /* includes */,
+				4CCFEE532542A1DE00D24D89 /* draw */,
 				4C3A423F253D66C100BD7C39 /* fileio */,
-				4C1B656425305F2000BF774D /* game.c */,
-				4C1B656325305F2000BF774D /* game.h */,
+				4CCFEE3A2541BC3900D24D89 /* game */,
 				4C3A407F253B419100BD7C39 /* get_next_line */,
 				4C3A41BB253C98F500BD7C39 /* libft */,
-				4C72598D2520863700A5404C /* main.c */,
-				4C1B65752531553B00BF774D /* map.c */,
-				4C1B65742531553B00BF774D /* map.h */,
-				4C3A4232253CA9FE00BD7C39 /* parse.c */,
-				4C3A4231253CA9FE00BD7C39 /* parse.h */,
-				4C7259AB2520A7E000A5404C /* player.c */,
-				4C14DF752525A24200D6F396 /* player.h */,
-				4C1B65902531EA9A00BF774D /* raycast.c */,
-				4C1B658F2531EA9A00BF774D /* raycast.h */,
-				4C1B657A25315F4600BF774D /* texture.c */,
-				4C1B657925315F4600BF774D /* texture.h */,
-				4C1B658C2531E82600BF774D /* type.h */,
 				4C3A4258253DE09800BD7C39 /* utility */,
 				4C3A425D253DE16E00BD7C39 /* validation */,
-				4C1B65862531D88C00BF774D /* window.c */,
-				4C1B65852531D88C00BF774D /* window.h */,
-				4CCFEE3525414C5700D24D89 /* sprite.h */,
-				4CCFEE3625414C5700D24D89 /* sprite.c */,
 			);
 			path = cub3d;
 			sourceTree = "<group>";
@@ -379,6 +363,61 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4CCFEE3A2541BC3900D24D89 /* game */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A4236253CD47400BD7C39 /* error.c */,
+				4CCFEE652542B2A800D24D89 /* hook.c */,
+				4C1B6560253054FD00BF774D /* control.c */,
+				4C1B656425305F2000BF774D /* game.c */,
+				4C1B65752531553B00BF774D /* map.c */,
+				4CCFEE4025428DD600D24D89 /* player_util.c */,
+				4C7259AB2520A7E000A5404C /* player.c */,
+				4CCFEE442542916400D24D89 /* raycast_util.c */,
+				4C1B65902531EA9A00BF774D /* raycast.c */,
+				4CCFEE3625414C5700D24D89 /* sprite.c */,
+				4C1B657A25315F4600BF774D /* texture.c */,
+				4C1B65862531D88C00BF774D /* window.c */,
+			);
+			path = game;
+			sourceTree = "<group>";
+		};
+		4CCFEE532542A1DE00D24D89 /* draw */ = {
+			isa = PBXGroup;
+			children = (
+				4CCFEE502542A1C700D24D89 /* draw_wall.c */,
+				4CCFEE562542A24900D24D89 /* draw_sprite.c */,
+				4CCFEE592542A27A00D24D89 /* draw_background.c */,
+			);
+			path = draw;
+			sourceTree = "<group>";
+		};
+		4CCFEE692542B62100D24D89 /* includes */ = {
+			isa = PBXGroup;
+			children = (
+				4C1B655F253054FD00BF774D /* control.h */,
+				4C1B656325305F2000BF774D /* game.h */,
+				4C1B65742531553B00BF774D /* map.h */,
+				4C14DF752525A24200D6F396 /* player.h */,
+				4C1B658F2531EA9A00BF774D /* raycast.h */,
+				4CCFEE3525414C5700D24D89 /* sprite.h */,
+				4C1B657925315F4600BF774D /* texture.h */,
+				4C1B65852531D88C00BF774D /* window.h */,
+				4C3A4241253D66FC00BD7C39 /* fileio.h */,
+				4C3A4235253CD47400BD7C39 /* error.h */,
+				4CCFEE482542923A00D24D89 /* draw.h */,
+				4C3A4086253B419100BD7C39 /* get_next_line.h */,
+				4CCFEE642542B2A800D24D89 /* hook.h */,
+				4C3A41CC253C98F500BD7C39 /* libft.h */,
+				4C3A428B253EDCD600BD7C39 /* ft_list.h */,
+				4C3A4259253DE0AE00BD7C39 /* utility.h */,
+				4C3A4254253DDDF300BD7C39 /* validation.h */,
+				4C1B658C2531E82600BF774D /* type.h */,
+				4C7259952520865300A5404C /* cub3d.h */,
+			);
+			path = includes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,9 +492,11 @@
 				4C3A4298253EDCD600BD7C39 /* ft_list_foreach_if.c in Sources */,
 				4C3A4294253EDCD600BD7C39 /* ft_list_push_back.c in Sources */,
 				4C3A41EB253C98F500BD7C39 /* ft_putstr_fd.c in Sources */,
+				4CCFEE662542B2A800D24D89 /* hook.c in Sources */,
 				4C3A4251253DC77500BD7C39 /* is_all_digit.c in Sources */,
 				4C3A4268253DE75300BD7C39 /* init_chars_array.c in Sources */,
 				4C3A4202253C98F500BD7C39 /* ft_isalpha.c in Sources */,
+				4CCFEE3E25428D2C00D24D89 /* init_rgb.c in Sources */,
 				4C3A41F5253C98F500BD7C39 /* ft_bzero.c in Sources */,
 				4C3A420A253C98F500BD7C39 /* ft_memmove.c in Sources */,
 				4C3A4290253EDCD600BD7C39 /* ft_list_reverse.c in Sources */,
@@ -468,11 +509,11 @@
 				4C3A424C253DC39200BD7C39 /* ft_strcmp.c in Sources */,
 				4C1B65912531EA9A00BF774D /* raycast.c in Sources */,
 				4C3A4204253C98F500BD7C39 /* ft_putchar_fd.c in Sources */,
+				4CCFEE572542A24900D24D89 /* draw_sprite.c in Sources */,
 				4C3A420F253C98F500BD7C39 /* ft_isalnum.c in Sources */,
 				4C3A428E253EDCD600BD7C39 /* ft_list_clear.c in Sources */,
 				4C3A4293253EDCD600BD7C39 /* ft_list_at.c in Sources */,
 				4C3A4292253EDCD600BD7C39 /* ft_list_size.c in Sources */,
-				4C3A4233253CA9FE00BD7C39 /* parse.c in Sources */,
 				4C3A4089253B419100BD7C39 /* get_next_line.c in Sources */,
 				4C3A426C253DFE5E00BD7C39 /* validation_key.c in Sources */,
 				4C3A41FB253C98F500BD7C39 /* ft_putendl_fd.c in Sources */,
@@ -490,6 +531,7 @@
 				4C3A4265253DE5F300BD7C39 /* ft_max.c in Sources */,
 				4C3A4299253EDCD600BD7C39 /* ft_list_find.c in Sources */,
 				4C3A425B253DE0AE00BD7C39 /* utility.c in Sources */,
+				4CCFEE452542916400D24D89 /* raycast_util.c in Sources */,
 				4C3A4088253B419100BD7C39 /* get_next_line_utils.c in Sources */,
 				4C3A41E8253C98F500BD7C39 /* ft_strnstr.c in Sources */,
 				4C3A4209253C98F500BD7C39 /* ft_strtrim.c in Sources */,
@@ -501,13 +543,17 @@
 				4C3A428D253EDCD600BD7C39 /* ft_list_reverse_fun.c in Sources */,
 				4C3A4208253C98F500BD7C39 /* ft_strmapi.c in Sources */,
 				4C3A41F6253C98F500BD7C39 /* ft_strjoin.c in Sources */,
+				4CCFEE5E2542A84000D24D89 /* ft_min.c in Sources */,
 				4CCFEE3725414C5700D24D89 /* sprite.c in Sources */,
 				4C1B6561253054FD00BF774D /* control.c in Sources */,
 				4C3A41F7253C98F500BD7C39 /* ft_isascii.c in Sources */,
 				4C3A429A253EDCD600BD7C39 /* ft_list_push_strs.c in Sources */,
+				4CCFEE5A2542A27A00D24D89 /* draw_background.c in Sources */,
 				4C3A4243253D670B00BD7C39 /* read.c in Sources */,
 				4C3A4295253EDCD600BD7C39 /* ft_list_sort.c in Sources */,
 				4C1B65762531553B00BF774D /* map.c in Sources */,
+				4CCFEE4125428DD600D24D89 /* player_util.c in Sources */,
+				4CCFEE512542A1C700D24D89 /* draw_wall.c in Sources */,
 				4C3A41E9253C98F500BD7C39 /* ft_isdigit.c in Sources */,
 				4C3A41F4253C98F500BD7C39 /* ft_strchr.c in Sources */,
 				4C3A4206253C98F500BD7C39 /* ft_substr.c in Sources */,

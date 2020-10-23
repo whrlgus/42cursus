@@ -1,9 +1,17 @@
 #include "cub3d.h"
 
 void redraw(t_mlx mlx){
-	for(int i=0;i<g_cub.window.height;++i)
-		for(int j=0;j<g_cub.window.width;++j)
-			mlx.data[i*g_cub.window.width+j]=g_cub.window.scene[i][j];
+	int i;
+	int j;
+	int tmp;
+	
+	i = -1;
+	while (++i < g_cub.window.height){
+		j = -1;
+		tmp = i * mlx.sl / 4;
+		while (++j < g_cub.window.width)
+			mlx.data[tmp + j]=g_cub.window.scene[i][j];
+	}
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img_ptr, 0, 0);
 }
 
@@ -11,18 +19,13 @@ int loop(t_mlx *mlx){
 	calc_movement(&g_cub.player, &g_cub.control);
 	update_player(g_cub.map.data, &g_cub.player);
 	update_scene(g_cub.map.data, g_cub.window, g_cub.player);
-	
 	redraw(*mlx);
-//	usleep(1000);
 	return 0;
 }
 
 
 
-int main(int argc, const char* argv[]) {
-	char *file_path = "/Users/gihyun/tmp/1.cub";
-	if(!init_game(file_path)) return -1;
-	
+void init_mlx() {
 	t_mlx mlx;
 	
 	mlx.mlx_ptr = mlx_init();
@@ -33,8 +36,20 @@ int main(int argc, const char* argv[]) {
 	mlx_hook(mlx.win_ptr, 2, 0, key_pressed, &g_cub.control);
 	mlx_hook(mlx.win_ptr, 3, 0, key_released, &g_cub.control);
 	mlx_hook(mlx.win_ptr, 6, 0, motion_notified, &g_cub.control);
+	mlx_hook(mlx.win_ptr, 17, 0, exit_hook, 0);
 	mlx_loop_hook(mlx.mlx_ptr, loop, &mlx);
 	mlx_loop(mlx.mlx_ptr);
+}
 
-	return 0;
+int main(int argc, const char* argv[]) {
+	if (argc > 3 || ( argc == 3 && ft_strcmp("--save", argv[2]) != 0))
+		return (print_error(cuberror(invalid_argument)));
+	if(!init_game(argv[1])) return -1;
+	if (argc == 3)
+	{
+		update_scene(g_cub.map.data, g_cub.window, g_cub.player);
+		save_image_to_bmp_file(g_cub.window.scene, g_cub.window.width, g_cub.window.height);
+	} else
+		init_mlx();
+	return (0);
 }

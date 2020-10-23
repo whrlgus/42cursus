@@ -7,8 +7,9 @@ char* cuberror(enum e_error type){
 		return ("invalid configuration");
 	else if (type == invlid_texture_file)
 		return ("invalid texture file");
-	
-	return "";
+	else if (type == invalid_argument)
+		return ("invalid argument");
+	return ("");
 }
 
 int print_error(char *msg){
