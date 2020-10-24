@@ -17,7 +17,7 @@ int	load_texture(t_texture *texture, char *file_path)
 	int		tmp;
 	void	*img;
 
-	img = mlx_xpm_file_to_image(mlx_init(),
+	img = mlx_xpm_file_to_image(g_mlx.mlx_ptr,
 								file_path,
 								&texture->size.x,
 								&texture->size.y);

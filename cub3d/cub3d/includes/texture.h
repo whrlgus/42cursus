@@ -17,6 +17,7 @@
 # include <mlx.h>
 # include "type.h"
 
-int load_texture(t_texture *texture, char *file_path);
+extern t_mlx	g_mlx;
+int				load_texture(t_texture *texture, char *file_path);
 
 #endif

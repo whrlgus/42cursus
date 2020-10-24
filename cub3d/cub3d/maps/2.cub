@@ -1,12 +1,12 @@
 R 10000 480
-NO ../images/north.xpm
-SO ../images/south.xpm
-EA ../images/east.xpm
+NO /Users/gicho/github/42cursus/cub3d/cub3d/images/north.xpm
+SO /Users/gicho/github/42cursus/cub3d/cub3d/images/south.xpm
+EA /Users/gicho/github/42cursus/cub3d/cub3d/images/east.xpm
 
-S ../images/mossy.xpm
+S /Users/gicho/github/42cursus/cub3d/cub3d/images/mossy.xpm
 F 0,0,139
 
-WE ../images/west.xpm
+WE /Users/gicho/github/42cursus/cub3d/cub3d/images/west.xpm
 C 124,252,0
 11111
 10S01
