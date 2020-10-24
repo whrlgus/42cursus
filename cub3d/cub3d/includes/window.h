@@ -1,12 +1,24 @@
-#ifndef window_h
-#define window_h
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   window.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/24 12:43:43 by gicho             #+#    #+#             */
+/*   Updated: 2020/10/24 12:43:43 by gicho            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "type.h"
-#include "texture.h"
-#include <stdlib.h>
-#include "draw.h"
+#ifndef WINDOW_H
+# define WINDOW_H
 
-t_window init_window(int width, int height);
-void update_scene(char **map, t_window g_window, t_player player);
+# include "type.h"
+# include "texture.h"
+# include <stdlib.h>
+# include "draw.h"
 
-#endif /* window_h */
+t_window	init_window(int width, int height);
+void		update_scene(void);
+
+#endif

@@ -17,8 +17,8 @@ void	calc_draw_info(t_draw_info *info, t_cub *cub, int x)
 	int h;
 
 	h = cub->window.height;
-	info->ray = initRay(cub->player, x, cub->window.width);
-	info->perp_wall_dist = calcPerpWallDist(cub, &(info->ray));
+	info->ray = init_ray(cub->player, x, cub->window.width);
+	info->perp_wall_dist = calc_perp_wall_dist(cub, &(info->ray));
 	info->line_h = (int)(h / info->perp_wall_dist);
 	info->draw_s = info->line_h > h ? 0 : (h - info->line_h) / 2;
 	info->draw_e = info->line_h >= h ? h - 1 : (info->line_h + h) / 2;

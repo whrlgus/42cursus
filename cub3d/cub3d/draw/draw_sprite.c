@@ -28,25 +28,25 @@ void	calc_draw_sprite_info(t_draw_sprite_info *info, t_sprite *sprite)
 {
 	info->w = g_cub.window.width;
 	info->h = g_cub.window.height;
-	info->spriteX = sprite->pos.x - g_cub.player.pos.x;
-	info->spriteY = sprite->pos.y - g_cub.player.pos.y;
-	info->invDet = 1.0 / (g_cub.player.plane.x * g_cub.player.dir.y -
+	info->sprite_x = sprite->pos.x - g_cub.player.pos.x;
+	info->sprite_y = sprite->pos.y - g_cub.player.pos.y;
+	info->inv_det = 1.0 / (g_cub.player.plane.x * g_cub.player.dir.y -
 							g_cub.player.dir.x * g_cub.player.plane.y);
-	info->transformX = info->invDet * (g_cub.player.dir.y * info->spriteX
-									- g_cub.player.dir.x * info->spriteY);
-	info->transformY = info->invDet * (-g_cub.player.plane.y * info->spriteX
-									+ g_cub.player.plane.x * info->spriteY);
-	info->spriteScreenX = (int)((info->w / 2)
-								* (1 + info->transformX / info->transformY));
-	info->spriteHeight = abs((int)(info->h / (info->transformY)));
-	info->drawStartY = ft_max(0, -info->spriteHeight / 2 + info->h / 2);
-	info->drawEndY = ft_min(info->h - 1, info->spriteHeight / 2 + info->h / 2);
-	info->spriteWidth = abs((int)(info->h / (info->transformY)));
-	info->drawStartX = ft_max(0, -info->spriteWidth / 2 + info->spriteScreenX);
-	info->drawEndX = ft_min(info->w - 1,
-							info->spriteWidth / 2 + info->spriteScreenX);
-	info->texWidth = g_cub.texture[4].size.x;
-	info->texHeight = g_cub.texture[4].size.y;
+	info->transform_x = info->inv_det * (g_cub.player.dir.y * info->sprite_x
+									- g_cub.player.dir.x * info->sprite_y);
+	info->transform_y = info->inv_det * (-g_cub.player.plane.y * info->sprite_x
+									+ g_cub.player.plane.x * info->sprite_y);
+	info->sprite_screen_x = (int)((info->w / 2)
+								* (1 + info->transform_x / info->transform_y));
+	info->sprite_height = abs((int)(info->h / (info->transform_y)));
+	info->draw_start_y = ft_max(0, -info->sprite_height / 2 + info->h / 2);
+	info->draw_end_y = ft_min(info->h - 1, info->sprite_height / 2 + info->h / 2);
+	info->sprite_width = abs((int)(info->h / (info->transform_y)));
+	info->draw_start_x = ft_max(0, -info->sprite_width / 2 + info->sprite_screen_x);
+	info->draw_end_x = ft_min(info->w - 1,
+							info->sprite_width / 2 + info->sprite_screen_x);
+	info->tex_width = g_cub.texture[4].size.x;
+	info->tex_height = g_cub.texture[4].size.y;
 }
 
 void	draw_ele_sub(t_draw_sprite_info *info, t_sprite *sprite, int stripe)
@@ -54,12 +54,12 @@ void	draw_ele_sub(t_draw_sprite_info *info, t_sprite *sprite, int stripe)
 	int y;
 	int tmp;
 
-	y = info->drawStartY - 1;
-	while (++y < info->drawEndY)
+	y = info->draw_start_y - 1;
+	while (++y < info->draw_end_y)
 	{
-		info->d = (y) * 256 - info->h * 128 + info->spriteHeight * 128;
-		info->texY = (info->d * info->texHeight) / info->spriteHeight / 256;
-		tmp = info->texWidth * info->texY + info->texX;
+		info->d = (y) * 256 - info->h * 128 + info->sprite_height * 128;
+		info->tex_y = (info->d * info->tex_height) / info->sprite_height / 256;
+		tmp = info->tex_width * info->tex_y + info->tex_x;
 		info->color = g_cub.texture[sprite->tex_num].data[tmp];
 		if ((info->color & 0x00FFFFFF) != 0)
 			g_cub.window.scene[y][stripe] = info->color;
@@ -73,13 +73,13 @@ void	draw_ele(t_sprite *sprite)
 	int					tmp;
 
 	calc_draw_sprite_info(&info, sprite);
-	stripe = info.drawStartX - 1;
-	while (++stripe < info.drawEndX)
+	stripe = info.draw_start_x - 1;
+	while (++stripe < info.draw_end_x)
 	{
-		tmp = stripe - (-info.spriteWidth / 2 + info.spriteScreenX);
-		info.texX = (int)(256 * tmp * info.texWidth / info.spriteWidth) / 256;
-		if (stripe > 0 && stripe < info.w && info.transformY > 0
-			&& info.transformY < g_cub.zbuf[stripe])
+		tmp = stripe - (-info.sprite_width / 2 + info.sprite_screen_x);
+		info.tex_x = (int)(256 * tmp * info.tex_width / info.sprite_width) / 256;
+		if (stripe > 0 && stripe < info.w && info.transform_y > 0
+			&& info.transform_y < g_cub.zbuf[stripe])
 			draw_ele_sub(&info, sprite, stripe);
 	}
 }

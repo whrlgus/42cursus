@@ -1,9 +1,22 @@
-#ifndef map_h
-#define map_h
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/24 12:43:43 by gicho             #+#    #+#             */
+/*   Updated: 2020/10/24 12:43:43 by gicho            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdlib.h>
-#include "utility.h"
+#ifndef MAP_H
+# define MAP_H
 
-char** init_map(char **strs, int start, t_pair_int size);
-t_pair_int calc_size(t_string_array *arr, int i);
-#endif 
+# include <stdlib.h>
+# include "utility.h"
+
+char		**init_map(char **strs, int start, t_pair_int size);
+t_pair_int	calc_size(t_string_array *arr, int i);
+
+#endif

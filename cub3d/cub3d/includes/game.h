@@ -1,18 +1,30 @@
-#ifndef game_h
-#define game_h
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/24 12:43:43 by gicho             #+#    #+#             */
+/*   Updated: 2020/10/24 12:43:43 by gicho            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "player.h"
-#include "map.h"
-#include "window.h"
-#include "texture.h"
-#include "control.h"
-#include "error.h"
-#include "fileio.h"
-#include "validation.h"
-#include "sprite.h"
+#ifndef GAME_H
+# define GAME_H
 
-extern t_cub g_cub;
+# include "player.h"
+# include "map.h"
+# include "window.h"
+# include "texture.h"
+# include "control.h"
+# include "error.h"
+# include "fileio.h"
+# include "validation.h"
+# include "sprite.h"
 
-int init_game(char *cub_file_path);
-int set_cub(t_cub *cub, t_string_array *conf);
+extern t_cub	g_cub;
+int				init_game(char *cub_file_path);
+int				set_cub(t_cub *cub, t_string_array *conf);
+
 #endif

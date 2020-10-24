@@ -1,9 +1,22 @@
-#ifndef texture_h
-#define texture_h
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/24 12:43:43 by gicho             #+#    #+#             */
+/*   Updated: 2020/10/24 12:43:43 by gicho            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdlib.h>
-#include <mlx.h>
-#include "type.h"
+#ifndef TEXTURE_H
+# define TEXTURE_H
+
+# include <stdlib.h>
+# include <mlx.h>
+# include "type.h"
 
 int load_texture(t_texture *texture, char *file_path);
-#endif 
+
+#endif

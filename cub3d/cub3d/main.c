@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/24 17:12:46 by gicho             #+#    #+#             */
+/*   Updated: 2020/10/24 17:12:46 by gicho            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void redraw(t_mlx mlx){
@@ -18,7 +30,7 @@ void redraw(t_mlx mlx){
 int loop(t_mlx *mlx){
 	calc_movement(&g_cub.player, &g_cub.control);
 	update_player(g_cub.map.data, &g_cub.player);
-	update_scene(g_cub.map.data, g_cub.window, g_cub.player);
+	update_scene();
 	redraw(*mlx);
 	return 0;
 }
@@ -47,7 +59,7 @@ int main(int argc, const char* argv[]) {
 	if(!init_game((char*)argv[1])) return -1;
 	if (argc == 3)
 	{
-		update_scene(g_cub.map.data, g_cub.window, g_cub.player);
+		update_scene();
 		save_image_to_bmp_file(g_cub.window.scene, g_cub.window.width, g_cub.window.height);
 	} else
 		init_mlx();
