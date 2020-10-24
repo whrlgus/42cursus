@@ -157,10 +157,10 @@ typedef struct	s_draw_sprite_info{
 	double			transform_x;
 	double			transform_y;
 	int				sprite_screen_x;
-	int				sprite_height;
+	int				sprite_h;
 	int				draw_start_y;
 	int				draw_end_y;
-	int				sprite_width;
+	int				sprite_w;
 	int				draw_start_x;
 	int				draw_end_x;
 	int				tex_width;

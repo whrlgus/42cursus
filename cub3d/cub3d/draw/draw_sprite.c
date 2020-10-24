@@ -38,13 +38,13 @@ void	calc_draw_sprite_info(t_draw_sprite_info *info, t_sprite *sprite)
 									+ g_cub.player.plane.x * info->sprite_y);
 	info->sprite_screen_x = (int)((info->w / 2)
 								* (1 + info->transform_x / info->transform_y));
-	info->sprite_height = abs((int)(info->h / (info->transform_y)));
-	info->draw_start_y = ft_max(0, -info->sprite_height / 2 + info->h / 2);
-	info->draw_end_y = ft_min(info->h - 1, info->sprite_height / 2 + info->h / 2);
-	info->sprite_width = abs((int)(info->h / (info->transform_y)));
-	info->draw_start_x = ft_max(0, -info->sprite_width / 2 + info->sprite_screen_x);
+	info->sprite_h = abs((int)(info->h / (info->transform_y)));
+	info->draw_start_y = ft_max(0, -info->sprite_h / 2 + info->h / 2);
+	info->draw_end_y = ft_min(info->h - 1, info->sprite_h / 2 + info->h / 2);
+	info->sprite_w = abs((int)(info->h / (info->transform_y)));
+	info->draw_start_x = ft_max(0, -info->sprite_w / 2 + info->sprite_screen_x);
 	info->draw_end_x = ft_min(info->w - 1,
-							info->sprite_width / 2 + info->sprite_screen_x);
+							info->sprite_w / 2 + info->sprite_screen_x);
 	info->tex_width = g_cub.texture[4].size.x;
 	info->tex_height = g_cub.texture[4].size.y;
 }
@@ -57,8 +57,8 @@ void	draw_ele_sub(t_draw_sprite_info *info, t_sprite *sprite, int stripe)
 	y = info->draw_start_y - 1;
 	while (++y < info->draw_end_y)
 	{
-		info->d = (y) * 256 - info->h * 128 + info->sprite_height * 128;
-		info->tex_y = (info->d * info->tex_height) / info->sprite_height / 256;
+		info->d = (y) * 256 - info->h * 128 + info->sprite_h * 128;
+		info->tex_y = (info->d * info->tex_height) / info->sprite_h / 256;
 		tmp = info->tex_width * info->tex_y + info->tex_x;
 		info->color = g_cub.texture[sprite->tex_num].data[tmp];
 		if ((info->color & 0x00FFFFFF) != 0)
@@ -76,8 +76,8 @@ void	draw_ele(t_sprite *sprite)
 	stripe = info.draw_start_x - 1;
 	while (++stripe < info.draw_end_x)
 	{
-		tmp = stripe - (-info.sprite_width / 2 + info.sprite_screen_x);
-		info.tex_x = (int)(256 * tmp * info.tex_width / info.sprite_width) / 256;
+		tmp = stripe - (-info.sprite_w / 2 + info.sprite_screen_x);
+		info.tex_x = (int)(256 * tmp * info.tex_width / info.sprite_w) / 256;
 		if (stripe > 0 && stripe < info.w && info.transform_y > 0
 			&& info.transform_y < g_cub.zbuf[stripe])
 			draw_ele_sub(&info, sprite, stripe);

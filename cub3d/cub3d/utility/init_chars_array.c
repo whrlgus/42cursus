@@ -12,11 +12,11 @@
 
 #include "utility.h"
 
-char** init_chars_array(int row, int col, char c)
+char	**init_chars_array(int row, int col, char c)
 {
-	char** ret;
-	int i;
-	
+	char	**ret;
+	int		i;
+
 	ret = (char**)malloc(sizeof(char*) * row);
 	i = 0;
 	while (i < row)
@@ -25,6 +25,5 @@ char** init_chars_array(int row, int col, char c)
 		ft_memset(ret[i], c, col);
 		++i;
 	}
-	
 	return (ret);
 }
