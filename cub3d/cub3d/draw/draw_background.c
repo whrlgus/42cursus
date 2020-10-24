@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_background.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gicho <gicho@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/24 12:43:43 by gicho             #+#    #+#             */
+/*   Updated: 2020/10/24 12:43:43 by gicho            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "draw.h"
 
-
-void draw_background(t_window *window, t_rgb floor, t_rgb ceil) {
+void	draw_background(t_window *window, t_rgb floor, t_rgb ceil)
+{
 	int i;
 	int j;
 
